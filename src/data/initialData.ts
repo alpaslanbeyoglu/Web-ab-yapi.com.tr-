@@ -3,6 +3,7 @@ import { getVectorBuildingImage } from '../utils/vectorImage';
 
 export const INITIAL_COMPANY_INFO: CompanyInfo = {
   name: 'AB Yapı',
+  fullName: 'Alpaslan Beyoğlu Yapı Ltd. Şti.',
   slogan: 'GÜVENE YÜKSELEN YAPILAR',
   domain: 'ab-yapi.com.tr',
   phone: '+90 (551) 010 22 00',

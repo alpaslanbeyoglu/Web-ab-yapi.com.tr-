@@ -23,15 +23,15 @@ export const MapView: React.FC<MapViewProps> = ({ projects, setSelectedProject, 
     <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 space-y-8">
       {/* Page Title Header */}
       <div className="bg-slate-900 text-white p-8 md:p-12 rounded-3xl shadow-xl space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-xs font-bold uppercase tracking-wider border border-teal-500/30">
-          <MapPin className="w-3.5 h-3.5" />
-          <span>İstanbul Lokasyon Veritabanı</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/20 text-amber-300 rounded-full text-xs font-bold uppercase tracking-wider border border-amber-500/30">
+          <MapPin className="w-3.5 h-3.5 text-amber-400" />
+          <span>Fatih Suriçi Proje & Şantiye Veritabanı</span>
         </div>
         <h1 className="text-3xl md:text-5xl font-extrabold font-outfit tracking-tight">
           Tamamlanan ve Devam Eden Projelerimiz Haritada
         </h1>
         <p className="text-slate-300 text-sm md:text-base max-w-2xl">
-          AB Yapı'nın İstanbul Anadolu ve Avrupa yakasında inşa ettiği ve teslim ettiği kentsel dönüşüm, konut ve ticari binaları etkileşimli harita üzerinde keşfedin.
+          AB Yapı'nın Fatih tarihi Suriçi bölgesinde inşa ettiği ve teslim ettiği depreme dayanıklı modern konut yapılarını ve devam eden şantiyelerimizi etkileşimli harita üzerinde keşfedin.
         </p>
       </div>
 

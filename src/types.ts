@@ -74,6 +74,7 @@ export interface CustomerInquiry {
 
 export interface CompanyInfo {
   name: string;
+  fullName?: string;
   slogan: string;
   domain: string;
   phone: string;

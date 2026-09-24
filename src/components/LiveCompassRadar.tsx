@@ -345,8 +345,8 @@ export const LiveCompassRadar: React.FC<LiveCompassRadarProps> = ({
 
   return (
     <>
-      {/* 1. FLOATING MINIMAL COMPASS PILL (Bottom Left) */}
-      <div className="fixed bottom-6 left-4 sm:left-6 z-40 select-none">
+      {/* 1. FLOATING MINIMAL COMPASS PILL (Bottom Left with 3D Holographic Elevation) */}
+      <div className="fixed bottom-6 left-4 sm:left-6 z-40 select-none animate-float-slow">
         {isMinimized ? (
           <button
             onClick={() => {
@@ -354,27 +354,28 @@ export const LiveCompassRadar: React.FC<LiveCompassRadarProps> = ({
               enableSensors();
             }}
             aria-label="Pusulayı Aç"
-            className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-slate-950/90 text-amber-400 shadow-2xl border border-amber-500/40 backdrop-blur-md hover:scale-105 transition-all active:scale-95"
-            title="En Yakın AB Yapı Projesi"
+            className="group relative flex items-center justify-center w-13 h-13 rounded-full bg-slate-950/95 text-amber-400 shadow-[0_15px_35px_-5px_rgba(0,0,0,0.7),0_0_25px_rgba(245,158,11,0.45)] border-t border-amber-300/50 border-b border-amber-600/30 ring-1 ring-amber-500/30 backdrop-blur-xl hover:scale-105 transition-all active:scale-95 cursor-pointer"
+            title="Size En Yakın AB Yapı Projesi (Pusulayı Aç)"
           >
-            <span className="absolute -inset-1 rounded-full bg-amber-500/20 animate-ping pointer-events-none opacity-60"></span>
-            <Compass className="w-6 h-6 text-amber-400 group-hover:rotate-45 transition-transform" />
-            <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 border-2 border-slate-900 rounded-full"></span>
+            <span className="absolute -inset-1 rounded-full bg-amber-500/25 animate-ping pointer-events-none opacity-60"></span>
+            <Compass className="w-6 h-6 text-amber-400 group-hover:rotate-45 transition-transform drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
+            <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-slate-950 rounded-full shadow-xs"></span>
           </button>
         ) : (
-          <div className="flex items-center gap-2 bg-slate-950/90 text-white p-1.5 pl-2 pr-3 rounded-full shadow-2xl border border-amber-500/30 backdrop-blur-xl transition-all duration-300 hover:border-amber-400/60 max-w-[calc(100vw-5.5rem)] sm:max-w-md">
-            
+          <div
+            className="flex items-center gap-2.5 bg-gradient-to-br from-slate-900/95 via-slate-950/95 to-slate-950/95 text-white p-2.5 pl-3 pr-4 rounded-3xl shadow-[0_20px_40px_-8px_rgba(0,0,0,0.8),0_0_30px_rgba(245,158,11,0.35)] border-t border-amber-300/40 border-b border-amber-600/20 ring-1 ring-amber-500/30 backdrop-blur-2xl transition-all duration-300 hover:border-amber-400/80 hover:shadow-[0_25px_45px_-8px_rgba(0,0,0,0.85),0_0_35px_rgba(245,158,11,0.5)] max-w-[calc(100vw-5.5rem)] sm:max-w-md cursor-pointer group transform hover:-translate-y-0.5"
+            onClick={() => {
+              setIsOpen(true);
+              enableSensors();
+            }}
+          >
             {/* Automatic Rotating Compass Rose Needle */}
-            <button
-              onClick={() => {
-                setIsOpen(true);
-                enableSensors();
-              }}
-              className="relative flex items-center justify-center w-11 h-11 rounded-full bg-gradient-to-br from-amber-500/20 to-slate-900 border border-amber-400/40 shrink-0 shadow-inner overflow-hidden cursor-pointer active:scale-90 transition-transform"
-              title="Pusula & Proje Detayını Gör"
+            <div
+              className="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/25 via-slate-900 to-slate-950 border border-amber-400/60 shrink-0 shadow-[inset_0_2px_6px_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.5)] overflow-hidden group-hover:scale-105 transition-transform"
+              title="Pusulayı Aç"
             >
               {/* Dial tick marks */}
-              <div className="absolute inset-0.5 rounded-full border border-dashed border-amber-400/30"></div>
+              <div className="absolute inset-0.5 rounded-2xl border border-dashed border-amber-400/40"></div>
 
               {/* LIVE NEEDLE */}
               <div
@@ -383,58 +384,50 @@ export const LiveCompassRadar: React.FC<LiveCompassRadarProps> = ({
               >
                 <div className="flex flex-col items-center justify-center">
                   {/* Pointing Head */}
-                  <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-b-[14px] border-b-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.9)]"></div>
+                  <div className="w-0 h-0 border-l-[5.5px] border-l-transparent border-r-[5.5px] border-r-transparent border-b-[15px] border-b-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,1)]"></div>
                   {/* Pivot Pin */}
-                  <div className="w-2 h-2 rounded-full bg-white -my-0.5 border border-slate-900 z-10 shadow"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-white -my-0.5 border border-slate-950 z-10 shadow-[0_0_6px_rgba(255,255,255,0.8)]"></div>
                   {/* Tail */}
-                  <div className="w-0 h-0 border-l-[3.5px] border-l-transparent border-r-[3.5px] border-r-transparent border-t-[9px] border-t-slate-500 opacity-70"></div>
+                  <div className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[10px] border-t-slate-500 opacity-75"></div>
                 </div>
               </div>
 
               {/* Pulsing ring if aligned */}
               {isAligned && (
-                <span className="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping"></span>
+                <span className="absolute inset-0 rounded-2xl bg-emerald-400/30 animate-ping"></span>
               )}
-            </button>
+            </div>
 
-            {/* Target Details Text */}
-            <div
-              onClick={() => {
-                setIsOpen(true);
-                enableSensors();
-              }}
-              className="cursor-pointer overflow-hidden text-left"
-            >
+            {/* Target Details Text & Call to Action */}
+            <div className="overflow-hidden text-left flex-1 min-w-0">
               <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-black tracking-wider text-amber-400 uppercase flex items-center gap-1 font-mono">
-                  <Radio className="w-3 h-3 text-emerald-400 animate-pulse" />
-                  {currentTarget?.formattedDistance}
-                </span>
-                <span className="text-[10px] text-slate-400">
-                  · {currentTarget?.cardinal}
+                <span className="text-[10px] font-black tracking-wider text-amber-400 uppercase flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Size En Yakın AB Yapı Projesi
                 </span>
               </div>
-              <p className="text-xs font-semibold text-slate-100 truncate max-w-[130px] sm:max-w-[190px]">
-                {currentTarget?.name}
+              <div className="flex items-center gap-1.5 truncate">
+                <span className="text-xs font-bold text-slate-100 truncate">
+                  {currentTarget?.name}
+                </span>
+                <span className="text-[11px] font-black text-amber-400 font-mono shrink-0 drop-shadow-xs">
+                  · {currentTarget?.formattedDistance}
+                </span>
+              </div>
+              <p className="text-[10px] text-slate-400 group-hover:text-amber-300 transition-colors flex items-center gap-1">
+                <span>Pusulayı açmak ve yön bulmak için tıklayın</span>
+                <ChevronRight className="w-3 h-3 text-amber-400 shrink-0" />
               </p>
             </div>
 
-            {/* Controls */}
-            <div className="flex items-center gap-1 ml-1 border-l border-slate-800 pl-1.5 shrink-0">
+            {/* Minimize Control */}
+            <div className="flex items-center shrink-0 border-l border-slate-800/80 pl-1.5 ml-0.5">
               <button
-                onClick={() => {
-                  setIsOpen(true);
-                  enableSensors();
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsMinimized(true);
                 }}
-                className="p-1.5 text-slate-400 hover:text-amber-400 rounded-full hover:bg-slate-800 transition-colors cursor-pointer"
-                title="Pusula & Harita"
-                aria-label="Pusula & Harita"
-              >
-                <Maximize2 className="w-3.5 h-3.5" />
-              </button>
-              <button
-                onClick={() => setIsMinimized(true)}
-                className="p-1.5 text-slate-400 hover:text-slate-200 rounded-full hover:bg-slate-800 transition-colors cursor-pointer"
+                className="p-1 text-slate-400 hover:text-slate-200 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
                 title="Küçült"
                 aria-label="Küçült"
               >

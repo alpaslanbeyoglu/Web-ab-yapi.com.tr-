@@ -61,7 +61,7 @@ export const AboutUs: React.FC<AboutProps> = ({ companyInfo, setActiveTab }) => 
             Yarım Asrı Aşan Güven Mirası
           </h1>
           <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-            1960’lardan bugüne İstanbul’un tarihi suriçi dokusundan modern kentsel dönüşüm alanlarına uzanan 3 kuşaklık mühendislik ve inşaat tecrübesi.
+            1960’lardan bugüne İstanbul’un tarihi suriçi dokusundan modern kentsel dönüşüm alanlarına uzanan 3 kuşaklık inşaat ve yapım tecrübesi.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export const AboutUs: React.FC<AboutProps> = ({ companyInfo, setActiveTab }) => 
         <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-center shrink-0 space-y-3 relative z-10">
           <Logo variant="light" size="xl" logoUrl={companyInfo.logoUrl} />
           <div className="text-xs text-teal-300 font-semibold uppercase tracking-widest pt-1">
-            Köklü Yapı Kültürü • 3. Nesil Vizyon
+            Alpaslan Beyoğlu Yapı Ltd. Şti.
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@ export const AboutUs: React.FC<AboutProps> = ({ companyInfo, setActiveTab }) => 
               </h3>
             </div>
             <p className="text-slate-700 text-sm leading-relaxed pl-1">
-              Köklerimizden aldığımız tecrübeyi modern mühendislik çözümlerimizle birleştirerek; insan odaklı, yapısal güvenliği merkeze alan ve yaşam standartlarını daima yukarı taşıyan projeler üretmektir.
+              Köklerimizden aldığımız tecrübeyi modern yapı standartlarımızla birleştirerek; insan odaklı, yapısal güvenliği merkeze alan ve yaşam standartlarını daima yukarı taşıyan projeler üretmektir.
             </p>
           </div>
 
@@ -160,22 +160,22 @@ export const AboutUs: React.FC<AboutProps> = ({ companyInfo, setActiveTab }) => 
               </h3>
             </div>
             <p className="text-slate-700 text-sm leading-relaxed pl-1">
-              Geleneksel inşaat kültürümüzü modern mühendislik standartlarıyla birleştirerek, hak sahiplerimiz için yüksek kaliteli, sağlam, depreme dayanıklı ve huzurlu yaşam alanları inşa eden güvenilir ve köklü bir marka olmaktır.
+              Geleneksel inşaat kültürümüzü günümüzün ileri yapı standartlarıyla birleştirerek, hak sahiplerimiz için yüksek kaliteli, sağlam, depreme dayanıklı ve huzurlu yaşam alanları inşa eden güvenilir ve köklü bir marka olmaktır.
             </p>
           </div>
 
-          {/* Yüksek Mühendislik & Kalite Güvencesi Card */}
+          {/* Yüksek Yapı Standartları & Kalite Güvencesi Card */}
           <div className="bg-slate-50 p-7 rounded-3xl shadow-sm border border-slate-200 space-y-3 relative overflow-hidden">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
                 <Star className="w-5 h-5 fill-amber-500" />
               </div>
               <h4 className="text-base md:text-lg font-extrabold text-slate-900 font-outfit">
-                Yüksek Mühendislik & Kalite Güvencesi
+                Yüksek Yapı & Kalite Güvencesi
               </h4>
             </div>
             <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-              Projelerimiz, <strong className="text-slate-800">İMO (İnşaat Mühendisleri Odası)</strong> üyesi yetkin statikerler ve uzman mimarlar gözetiminde 1. sınıf standartlarda inşa edilir.
+              Projelerimiz, yürürlükteki en güncel deprem ve inşaat yönetmeliklerine tam uyumlu olarak 1. sınıf standartlarda inşa edilir.
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs font-semibold text-teal-800">
               <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0" />

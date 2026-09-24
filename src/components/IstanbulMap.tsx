@@ -1,26 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Project } from '../types';
-import { HISTORICAL_PROJECTS, HistoricalProject } from '../data/historicalProjects';
-import { MapPin, Building, Calendar, ArrowRight, History } from 'lucide-react';
+import { Project, CompanyInfo } from '../types';
+import { MapPin, Building, Calendar, ArrowRight, Navigation, ExternalLink, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import L from 'leaflet';
 
 interface IstanbulMapProps {
   projects: Project[];
   onSelectProject?: (project: Project) => void;
   selectedDistrict?: string;
+  companyInfo?: CompanyInfo;
 }
 
 export const IstanbulMap: React.FC<IstanbulMapProps> = ({
   projects,
   onSelectProject,
   selectedDistrict = 'Tümü',
+  companyInfo,
 }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const [activeProject, setActiveProject] = useState<Project | null>(projects[0] || null);
-  const [activeHistorical, setActiveHistorical] = useState<HistoricalProject | null>(null);
   const [filterType, setFilterType] = useState<'all' | 'ongoing' | 'completed'>('all');
-  const [showHistoricalPins, setShowHistoricalPins] = useState<boolean>(true);
 
   const filteredProjects = projects.filter((p) => {
     const matchesDistrict = selectedDistrict === 'Tümü' || p.district === selectedDistrict;
@@ -39,14 +38,15 @@ export const IstanbulMap: React.FC<IstanbulMapProps> = ({
       mapInstanceRef.current = null;
     }
 
-    const container = mapContainerRef.current as any;
+    const container = mapContainerRef.current as unknown as { _leaflet_id?: unknown };
     if (container._leaflet_id) {
       container._leaflet_id = null;
     }
 
+    // Default map center around Fatih Suriçi
     const map = L.map(mapContainerRef.current, {
-      center: [41.005, 28.938],
-      zoom: 14,
+      center: [41.0048, 28.9337],
+      zoom: 15,
       scrollWheelZoom: false,
     });
 
@@ -54,89 +54,147 @@ export const IstanbulMap: React.FC<IstanbulMapProps> = ({
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors | AB Yapı Proje Haritası',
-      maxZoom: 18,
+      maxZoom: 19,
     }).addTo(map);
 
-    const createCustomIcon = (status: string, isSelected: boolean) => {
-      const color = status === 'completed' ? '#0D9488' : status === 'ongoing' ? '#D97706' : '#243342';
-      const size = isSelected ? 42 : 34;
+    // Marker Icon Generator:
+    // Bitmiş Projeler = Mavi Nokta
+    // Devam Eden Projeler = Yanıp Sönen Yeşil Nokta
+    const createProjectMarkerIcon = (status: 'completed' | 'ongoing' | string, isSelected: boolean) => {
+      const isOngoing = status === 'ongoing';
 
-      const svgHtml = `
-        <div style="
-          width: ${size}px;
-          height: ${size}px;
-          background-color: ${color};
-          border: 3px solid white;
-          border-radius: 50%;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-weight: bold;
-          transform: ${isSelected ? 'scale(1.15)' : 'scale(1)'};
-          transition: transform 0.2s ease;
-        ">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-      `;
+      if (isOngoing) {
+        // Devam Eden: Yanıp Sönen Yeşil Nokta
+        const size = isSelected ? 38 : 30;
+        return L.divIcon({
+          html: `
+            <div style="position: relative; width: ${size}px; height: ${size}px; display: flex; align-items: center; justify-content: center;">
+              <span style="position: absolute; width: 100%; height: 100%; border-radius: 50%; background-color: #22c55e; opacity: 0.75; animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;"></span>
+              <div style="
+                position: relative;
+                width: ${size - 8}px;
+                height: ${size - 8}px;
+                background: linear-gradient(135deg, #10b981, #059669);
+                border: 2.5px solid white;
+                border-radius: 50%;
+                box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+                transform: ${isSelected ? 'scale(1.2)' : 'scale(1)'};
+                transition: transform 0.2s ease;
+              ">
+                <span style="width: 6px; height: 6px; background-color: white; border-radius: 50%;"></span>
+              </div>
+            </div>
+          `,
+          className: 'custom-leaflet-marker',
+          iconSize: [size, size],
+          iconAnchor: [size / 2, size / 2],
+        });
+      }
 
+      // Bitmiş Projeler: Mavi Nokta
+      const size = isSelected ? 34 : 26;
       return L.divIcon({
-        html: svgHtml,
+        html: `
+          <div style="
+            width: ${size}px;
+            height: ${size}px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            border: 2.5px solid white;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transform: ${isSelected ? 'scale(1.25)' : 'scale(1)'};
+            transition: transform 0.2s ease;
+          ">
+            <span style="width: 6px; height: 6px; background-color: white; border-radius: 50%;"></span>
+          </div>
+        `,
         className: 'custom-leaflet-marker',
         iconSize: [size, size],
         iconAnchor: [size / 2, size / 2],
       });
     };
 
-    const createHistoricalIcon = () => {
+    // AB Yapı Genel Merkez Ofisi İkonu (Altın & Lacivert Bina Rozeti)
+    const createOfficeMarkerIcon = () => {
       return L.divIcon({
         html: `
           <div style="
-            width: 28px;
-            height: 28px;
-            background-color: #dc2626;
-            border: 2px solid white;
+            width: 36px;
+            height: 36px;
+            background: #0f172a;
+            border: 2.5px solid #f59e0b;
             border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.6);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #fbbf24;
           ">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="16" height="20" x="4" y="2" rx="2" ry="2"/>
+              <path d="M9 22v-4h6v4"/>
+              <path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/>
+              <path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/>
+              <path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/>
             </svg>
           </div>
         `,
-        className: 'custom-historical-marker',
-        iconSize: [28, 28],
-        iconAnchor: [14, 14],
+        className: 'custom-leaflet-marker',
+        iconSize: [36, 36],
+        iconAnchor: [18, 18],
       });
     };
 
     const bounds = L.latLngBounds([]);
 
-    // Modern Projects
+    // 1. Add Office Marker
+    const officeLat = 41.004813;
+    const officeLng = 28.933724;
+    bounds.extend([officeLat, officeLng]);
+
+    const officeMarker = L.marker([officeLat, officeLng], {
+      icon: createOfficeMarkerIcon(),
+      zIndexOffset: 1000,
+    }).addTo(map);
+
+    officeMarker.bindPopup(`
+      <div style="font-family: system-ui; width: 200px; text-align: left; padding: 4px;">
+        <div style="font-size: 10px; font-weight: 800; color: #d97706; text-transform: uppercase;">🏢 GENEL MERKEZ</div>
+        <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 2px;">AB Yapı Merkez Ofisi</div>
+        <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Kocamustafapaşa Cad. Çınar Sk. No: 2B, Fatih / İstanbul</div>
+      </div>
+    `);
+
+    // 2. Add Project Markers (Blue dot for completed, Pulsing Green dot for ongoing)
     filteredProjects.forEach((proj) => {
       bounds.extend([proj.lat, proj.lng]);
 
       const isSelected = activeProject?.id === proj.id;
       const marker = L.marker([proj.lat, proj.lng], {
-        icon: createCustomIcon(proj.status, isSelected),
+        icon: createProjectMarkerIcon(proj.status, isSelected),
       }).addTo(map);
+
+      const statusBadge = proj.status === 'completed'
+        ? '<span style="color: #2563eb; font-weight: 700;">🔵 Teslim Edildi (Tamamlandı)</span>'
+        : '<span style="color: #10b981; font-weight: 700;">🟢 Devam Eden Şantiye</span>';
 
       const popupContent = `
         <div style="font-family: system-ui; width: 220px; text-align: left;">
           <img src="${proj.featuredImage}" style="width: 100%; height: 110px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;" />
-          <div style="font-size: 11px; font-weight: 700; color: #0D9488; text-transform: uppercase;">${proj.district} · ${proj.type}</div>
+          <div style="font-size: 11px; font-weight: 700; color: #2563eb; text-transform: uppercase;">${proj.district} · ${proj.neighborhood || ''}</div>
           <div style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 2px;">${proj.title}</div>
-          <div style="font-size: 12px; color: #64748b; margin-top: 4px;">${proj.neighborhood}</div>
-          <div style="margin-top: 8px; background-color: #f1f5f9; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; color: #334155;">
-            ${proj.status === 'completed' ? '✓ Teslim Edildi' : `%${proj.progress} İlerleme (${proj.deliveryDate})`}
+          <div style="font-size: 12px; color: #64748b; margin-top: 4px;">${proj.address}</div>
+          <div style="margin-top: 8px; background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 4px 8px; border-radius: 6px; font-size: 11px;">
+            ${statusBadge}
           </div>
         </div>
       `;
@@ -145,39 +203,12 @@ export const IstanbulMap: React.FC<IstanbulMapProps> = ({
 
       marker.on('click', () => {
         setActiveProject(proj);
-        setActiveHistorical(null);
         if (onSelectProject) onSelectProject(proj);
       });
     });
 
-    // Historical Suriçi Pins
-    if (showHistoricalPins) {
-      HISTORICAL_PROJECTS.forEach((hProj) => {
-        bounds.extend([hProj.lat, hProj.lng]);
-
-        const hMarker = L.marker([hProj.lat, hProj.lng], {
-          icon: createHistoricalIcon(),
-        }).addTo(map);
-
-        const hPopup = `
-          <div style="font-family: system-ui; width: 200px;">
-            <div style="font-size: 10px; font-weight: 800; color: #dc2626; text-transform: uppercase;">📍 AB Yapı Suriçi Eseri (Son 40 Yıl)</div>
-            <div style="font-size: 12px; font-weight: 800; color: #0f172a; margin-top: 4px;">${hProj.address}</div>
-            <div style="font-size: 11px; color: #64748b; margin-top: 2px;">${hProj.neighborhood} / Fatih</div>
-          </div>
-        `;
-
-        hMarker.bindPopup(hPopup);
-
-        hMarker.on('click', () => {
-          setActiveHistorical(hProj);
-          setActiveProject(null);
-        });
-      });
-    }
-
     if (bounds.isValid()) {
-      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 });
+      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 16 });
     }
 
     return () => {
@@ -186,76 +217,84 @@ export const IstanbulMap: React.FC<IstanbulMapProps> = ({
         mapInstanceRef.current = null;
       }
     };
-  }, [filteredProjects, activeProject, showHistoricalPins]);
+  }, [filteredProjects, activeProject]);
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
-      {/* Map Control Bar */}
-      <div className="p-4 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-4">
+    <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+      {/* Map Control Bar & Color Legend */}
+      <div className="p-4 sm:p-5 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-4">
         <div>
           <h3 className="font-bold text-lg flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-teal-400" />
-            <span>İstanbul Proje Etkileşimli Haritası</span>
+            <MapPin className="w-5 h-5 text-amber-400" />
+            <span>AB Yapı Proje Lokasyon Haritası</span>
           </h3>
           <p className="text-xs text-slate-400">
-            Kentsel dönüşüm, modern rezidanslar ve son 40 yılda üretilen Suriçi yapılarımız
+            Fatih Suriçi bölgesindeki kesin koordinatlı projelerimiz ve merkez ofisimiz
           </p>
         </div>
 
-        {/* Filter Toggle */}
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            onClick={() => setShowHistoricalPins(!showHistoricalPins)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 border ${
-              showHistoricalPins
-                ? 'bg-red-600 text-white border-red-500 shadow-sm'
-                : 'bg-slate-800 text-slate-300 border-slate-700 hover:text-white'
-            }`}
-          >
-            <History className="w-3.5 h-3.5" />
-            <span>Suriçi 40 Yıl Pinleri ({HISTORICAL_PROJECTS.length})</span>
-          </button>
+        {/* Legend & Filter Controls */}
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Color Legend */}
+          <div className="flex items-center gap-3 bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700 text-xs font-semibold">
+            <div className="flex items-center gap-1.5">
+              <span className="w-3 h-3 rounded-full bg-blue-600 border border-white shadow-xs"></span>
+              <span className="text-slate-300">Bitmiş Proje</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border border-white"></span>
+              </span>
+              <span className="text-emerald-300">Devam Eden</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="w-3 h-3 rounded-full bg-slate-950 border border-amber-400"></span>
+              <span className="text-amber-300">Merkez Ofis</span>
+            </div>
+          </div>
 
-          <div className="flex items-center gap-1 bg-slate-800 p-1 rounded-lg text-xs font-semibold">
+          {/* Filter Pills */}
+          <div className="flex items-center gap-1 bg-slate-800 p-1 rounded-xl text-xs font-semibold">
             <button
               onClick={() => setFilterType('all')}
-              className={`px-3 py-1.5 rounded-md transition-colors ${
-                filterType === 'all' ? 'bg-teal-600 text-white' : 'text-slate-400 hover:text-white'
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                filterType === 'all' ? 'bg-amber-500 text-slate-950 font-bold' : 'text-slate-400 hover:text-white'
               }`}
             >
-              Tüm Projeler
-            </button>
-            <button
-              onClick={() => setFilterType('ongoing')}
-              className={`px-3 py-1.5 rounded-md transition-colors ${
-                filterType === 'ongoing' ? 'bg-amber-600 text-white' : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              Devam Eden
+              Tümü ({projects.length})
             </button>
             <button
               onClick={() => setFilterType('completed')}
-              className={`px-3 py-1.5 rounded-md transition-colors ${
-                filterType === 'completed' ? 'bg-teal-600 text-white' : 'text-slate-400 hover:text-white'
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                filterType === 'completed' ? 'bg-blue-600 text-white font-bold' : 'text-slate-400 hover:text-white'
               }`}
             >
-              Teslim Edilenler
+              Bitmiş ({projects.filter((p) => p.status === 'completed').length})
+            </button>
+            <button
+              onClick={() => setFilterType('ongoing')}
+              className={`px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+                filterType === 'ongoing' ? 'bg-emerald-600 text-white font-bold' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              Devam Eden ({projects.filter((p) => p.status === 'ongoing').length})
             </button>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[480px]">
-        {/* Leaflet Container */}
-        <div className="lg:col-span-2 relative h-[380px] lg:h-auto min-h-[420px] bg-slate-100">
+      <div className="grid grid-cols-1 lg:grid-cols-3 min-h-[500px]">
+        {/* Leaflet Map Canvas */}
+        <div className="lg:col-span-2 relative h-[400px] lg:h-auto min-h-[460px] bg-slate-100">
           <div ref={mapContainerRef} className="absolute inset-0 w-full h-full z-10" />
         </div>
 
-        {/* Sidebar Project Detail */}
+        {/* Selected Project Card Sidebar */}
         <div className="p-5 bg-slate-50 border-t lg:border-t-0 lg:border-l border-slate-200 flex flex-col justify-between">
           {activeProject ? (
             <div className="space-y-4">
-              <div className="relative rounded-xl overflow-hidden shadow-md group">
+              <div className="relative rounded-2xl overflow-hidden shadow-md group">
                 <img
                   src={activeProject.featuredImage}
                   alt={activeProject.title}
@@ -263,95 +302,67 @@ export const IstanbulMap: React.FC<IstanbulMapProps> = ({
                 />
                 <div className="absolute top-3 right-3">
                   <span
-                    className={`px-3 py-1 rounded-full text-xs font-extrabold uppercase shadow-md ${
+                    className={`px-3 py-1 rounded-full text-xs font-black uppercase shadow-md flex items-center gap-1.5 ${
                       activeProject.status === 'completed'
-                        ? 'bg-emerald-600 text-white'
-                        : activeProject.status === 'ongoing'
-                        ? 'bg-amber-500 text-slate-950'
-                        : 'bg-slate-700 text-white'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-emerald-600 text-white'
                     }`}
                   >
-                    {activeProject.status === 'completed'
-                      ? 'Teslim Edildi'
-                      : activeProject.status === 'ongoing'
-                      ? 'Devam Ediyor'
-                      : 'Planlanan'}
+                    <span className="w-2 h-2 rounded-full bg-white"></span>
+                    {activeProject.status === 'completed' ? 'Bitmiş Proje' : 'Devam Eden'}
                   </span>
                 </div>
               </div>
 
               <div>
-                <div className="text-xs font-bold text-teal-700 uppercase tracking-wide">
-                  {activeProject.district} / {activeProject.neighborhood}
+                <div className="text-xs font-bold text-blue-600 uppercase tracking-wide">
+                  {activeProject.district} · {activeProject.neighborhood}
                 </div>
                 <h4 className="font-extrabold text-slate-900 text-lg leading-snug">
                   {activeProject.title}
                 </h4>
-                <p className="text-xs text-slate-600 mt-1 line-clamp-2">
-                  {activeProject.description}
+                <p className="text-xs text-slate-600 mt-1 flex items-start gap-1">
+                  <MapPin className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
+                  <span>{activeProject.address}</span>
                 </p>
               </div>
 
-              {activeProject.status === 'ongoing' && (
-                <div className="bg-white p-3 rounded-xl border border-slate-200 space-y-1.5">
-                  <div className="flex justify-between text-xs font-bold text-slate-700">
-                    <span>İnşaat İlerleme Oranı</span>
-                    <span className="text-amber-600">%{activeProject.progress}</span>
-                  </div>
-                  <div className="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                    <div
-                      className="bg-amber-500 h-full rounded-full transition-all duration-500"
-                      style={{ width: `${activeProject.progress}%` }}
-                    />
-                  </div>
+              {activeProject.features && activeProject.features.length > 0 && (
+                <div className="space-y-1.5 pt-1">
+                  {activeProject.features.map((f, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-xs text-slate-700">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                      <span>{f}</span>
+                    </div>
+                  ))}
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="bg-white p-2.5 rounded-lg border border-slate-200">
-                  <div className="text-slate-400 font-medium flex items-center gap-1">
-                    <Building className="w-3.5 h-3.5 text-teal-600" /> Bağımsız Bölüm
-                  </div>
-                  <div className="font-bold text-slate-900 mt-0.5">{activeProject.totalUnits} Konut / Ofis</div>
-                </div>
-                <div className="bg-white p-2.5 rounded-lg border border-slate-200">
-                  <div className="text-slate-400 font-medium flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-amber-600" /> Teslim Tarihi
-                  </div>
-                  <div className="font-bold text-slate-900 mt-0.5">{activeProject.deliveryDate}</div>
-                </div>
+              <div className="pt-2">
+                <a
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${activeProject.lat},${activeProject.lng}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition-transform active:scale-95"
+                >
+                  <Navigation className="w-4 h-4" />
+                  Google Haritalar'da Yol Tarifi Al
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
-            </div>
-          ) : activeHistorical ? (
-            <div className="space-y-4">
-              <div className="bg-red-50 border border-red-200 p-4 rounded-2xl space-y-2">
-                <div className="inline-flex items-center gap-1.5 text-xs font-extrabold text-red-700 uppercase">
-                  <History className="w-4 h-4 text-red-600" />
-                  <span>Son 40 Yıl Suriçi Eserimiz</span>
-                </div>
-                <h4 className="font-extrabold text-slate-900 text-base">
-                  {activeHistorical.address}
-                </h4>
-                <div className="text-xs text-slate-600 font-medium">
-                  {activeHistorical.neighborhood} / Fatih, İstanbul
-                </div>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Bu yapı, Faruk Ahmetbeyoğlu ve aile büyüklerimizin öncülüğünde Fatih tarihi suriçi bölgesinde inşa edilen nitelikli binalarımızdan biridir.
-              </p>
             </div>
           ) : (
             <div className="text-center py-12 text-slate-400 text-xs">
-              Haritadaki pini seçerek proje detaylarını görüntüleyin.
+              Haritadaki mavi veya yeşil noktalardan birine tıklayarak proje detaylarını görüntüleyin.
             </div>
           )}
 
           {activeProject && onSelectProject && (
             <button
               onClick={() => onSelectProject(activeProject)}
-              className="mt-4 w-full bg-slate-900 hover:bg-teal-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-colors"
+              className="mt-4 w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
             >
-              <span>Detaylı Proje Sayfasına Git</span>
+              <span>Tüm Projeler Sayfasında İncele</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           )}
