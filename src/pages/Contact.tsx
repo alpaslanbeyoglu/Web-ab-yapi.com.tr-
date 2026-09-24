@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CompanyInfo, CustomerInquiry } from '../types';
 import { Logo } from '../components/Logo';
 import { MapPin, Phone, Mail, Clock, MessageSquare, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { trackPhoneClick, trackWhatsAppClick } from '../utils/analytics';
 
 interface ContactProps {
   companyInfo: CompanyInfo;
@@ -78,7 +79,11 @@ export const Contact: React.FC<ContactProps> = ({ companyInfo, onAddInquiry }) =
                 </div>
                 <div>
                   <div className="font-bold text-slate-900">Telefon Hattı:</div>
-                  <a href={`tel:${companyInfo.phone}`} className="text-teal-700 font-extrabold text-base hover:underline">
+                  <a
+                    href={`tel:${companyInfo.phone}`}
+                    onClick={() => trackPhoneClick('contact_page_phone')}
+                    className="text-teal-700 font-extrabold text-base hover:underline"
+                  >
                     {companyInfo.phone}
                   </a>
                 </div>
@@ -92,6 +97,7 @@ export const Contact: React.FC<ContactProps> = ({ companyInfo, onAddInquiry }) =
                   <div className="font-bold text-slate-900">Hızlı WhatsApp Danışma:</div>
                   <a
                     href={`https://wa.me/${formattedWhatsapp}?text=Merhaba%2C%20AB%20Yap%C4%B1%20ile%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyorum.`}
+                    onClick={() => trackWhatsAppClick('contact_page_link')}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-emerald-600 font-extrabold text-base hover:underline"
@@ -127,6 +133,7 @@ export const Contact: React.FC<ContactProps> = ({ companyInfo, onAddInquiry }) =
             {/* Direct WhatsApp Action Box */}
             <a
               href={`https://wa.me/${formattedWhatsapp}?text=Merhaba%2C%20AB%20Yap%C4%B1%20kentsel%20d%C3%B6n%C3%BC%C5%9F%C3%BCm%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.`}
+              onClick={() => trackWhatsAppClick('contact_page_cta_box')}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold p-4 rounded-xl shadow-lg flex items-center justify-center gap-2 text-sm transition-all"

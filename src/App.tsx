@@ -26,6 +26,17 @@ import { MapView } from './pages/MapView';
 import { KentselDonusumGuide } from './pages/KentselDonusumGuide';
 import { AboutUs } from './pages/AboutUs';
 import { Contact } from './pages/Contact';
+import { trackPageView, trackInquirySubmit } from './utils/analytics';
+
+const TAB_METADATA: Record<string, { path: string; title: string }> = {
+  home: { path: '/', title: 'AB Yapı | Güvene Yükselen Yapılar' },
+  guide: { path: '/kentsel-donusum-rehberi', title: 'AB Yapı | Kentsel Dönüşüm Rehberi & 6306 Kanun' },
+  stats: { path: '/istatistikler', title: 'AB Yapı | İstanbul İnşaat & Dönüşüm İstatistikleri' },
+  projects: { path: '/projelerimiz', title: 'AB Yapı | Projelerimiz' },
+  map: { path: '/proje-haritasi', title: 'AB Yapı | İnteraktif Proje Haritası' },
+  about: { path: '/hakkimizda', title: 'AB Yapı | Hakkımızda & Vizyonumuz' },
+  contact: { path: '/iletisim', title: 'AB Yapı | İletişim & Teklif Talebi' },
+};
 
 export default function App() {
   const validTabs = ['home', 'stats', 'projects', 'map', 'guide', 'about', 'contact'];
@@ -57,6 +68,15 @@ export default function App() {
       // ignore
     }
   }, []);
+
+  // Google Analytics 4 page view tracking on tab/navigation switch
+  useEffect(() => {
+    const meta = TAB_METADATA[activeTab] || {
+      path: `/${activeTab}`,
+      title: `AB Yapı - ${activeTab}`,
+    };
+    trackPageView(meta.path, meta.title);
+  }, [activeTab]);
 
   // Company and project data states
   const [companyInfo] = useState<CompanyInfo>(INITIAL_COMPANY_INFO);
@@ -94,6 +114,8 @@ export default function App() {
       status: 'Yeni',
       createdAt: new Date().toLocaleString('tr-TR', { dateStyle: 'short', timeStyle: 'short' }),
     };
+    // Track Google Analytics conversion lead
+    trackInquirySubmit(newInquiryData.subject || 'Form Başvurusu', newInquiryData.district);
     setInquiries((prev) => [newInquiry, ...prev]);
   };
 

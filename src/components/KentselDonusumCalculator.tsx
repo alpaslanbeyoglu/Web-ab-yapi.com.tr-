@@ -15,6 +15,7 @@ import {
   CreditCard,
   Check,
 } from 'lucide-react';
+import { trackWhatsAppClick, trackCalculatorUse } from '../utils/analytics';
 
 interface CalculatorProps {
   rentAssistanceTL: number;
@@ -395,6 +396,10 @@ export const KentselDonusumCalculator: React.FC<CalculatorProps> = ({
 
               <a
                 href={`https://wa.me/${formattedWhatsapp}?text=${encodeURIComponent(inquiryText)}`}
+                onClick={() => {
+                  trackCalculatorUse(district, apartmentCount, grossSqM);
+                  trackWhatsAppClick('calculator_quote_request', `${district} - ${apartmentCount} Daire`);
+                }}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full mt-2 bg-gradient-to-r from-teal-600 via-teal-700 to-slate-900 hover:from-teal-500 hover:to-slate-800 text-white font-extrabold py-3 px-4 rounded-xl shadow-lg border border-teal-500/30 flex items-center justify-center gap-2 text-xs transition-all hover:scale-[1.01]"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Logo } from './Logo';
 import { MessageSquare, Menu, X, Phone } from 'lucide-react';
+import { trackWhatsAppClick, trackPhoneClick } from '../utils/analytics';
 
 interface NavbarProps {
   activeTab: string;
@@ -54,6 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-4">
             <a
               href={`tel:${phoneNumber}`}
+              onClick={() => trackPhoneClick('navbar_top_phone')}
               className="flex items-center gap-1.5 hover:text-white transition-colors"
             >
               <Phone className="w-3.5 h-3.5 text-teal-400" />
@@ -62,6 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <a
               href={`https://wa.me/${formattedWhatsapp}?text=Merhaba%2C%20AB%20Yap%C4%B1%20ile%20kentsel%20d%C3%B6n%C3%BC%C5%9F%C3%BCm%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyorum.`}
+              onClick={() => trackWhatsAppClick('navbar_top_danisin')}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:flex items-center gap-1.5 bg-teal-500/15 hover:bg-teal-500/25 text-teal-300 border border-teal-500/30 px-2.5 py-0.5 rounded text-[11px] font-semibold transition-colors"
@@ -107,6 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-3">
           <a
             href={`https://wa.me/${formattedWhatsapp}?text=Merhaba%2C%20AB%20Yap%C4%B1%20kentsel%20d%C3%B6n%C3%BC%C5%9F%C3%BCm%20ve%20projeleriniz%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.`}
+            onClick={() => trackWhatsAppClick('navbar_main_btn')}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs md:text-sm font-bold px-4 py-2.5 rounded-lg shadow-sm hover:shadow-md transition-all whitespace-nowrap"

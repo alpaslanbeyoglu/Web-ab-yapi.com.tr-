@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageSquare, X, Send } from 'lucide-react';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 interface WhatsAppButtonProps {
   whatsappNumber: string;
@@ -20,6 +21,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ whatsappNumber }
   ];
 
   const handleSend = () => {
+    trackWhatsAppClick('floating_widget_send', customTopic);
     const text = `Merhaba AB Yapı Yetkilisi,\n\n${customTopic} hakkında bilgi almak istiyorum.\n\nNot: ${userNote || 'Binamız için ön görüşme talep ediyorum.'}`;
     const encoded = encodeURIComponent(text);
     window.open(`https://wa.me/${formattedWhatsapp}?text=${encoded}`, '_blank');
@@ -98,7 +100,10 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ whatsappNumber }
 
       {/* Main Floating Trigger Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          if (!isOpen) trackWhatsAppClick('floating_widget_open');
+          setIsOpen(!isOpen);
+        }}
         className="group relative flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95"
         aria-label="WhatsApp Canlı Danışma"
       >
