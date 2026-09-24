@@ -7,7 +7,7 @@ export const INITIAL_COMPANY_INFO: CompanyInfo = {
   domain: 'ab-yapi.com.tr',
   phone: '+90 (551) 010 22 00',
   whatsapp: '+90 (551) 010 22 00',
-  email: 'info@ab-yapi.com.tr',
+  email: 'ab.taahhut@gmail.com',
   address: 'Kocamustafapaşa Cad. Çınar Sk. No:2B',
   district: 'Fatih',
   city: 'İstanbul',
