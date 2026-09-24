@@ -13,7 +13,7 @@ export const Contact: React.FC<ContactProps> = ({ companyInfo, onAddInquiry }) =
     name: '',
     phone: '',
     email: '',
-    district: 'Kadıköy',
+    district: 'Fatih',
     buildingAge: 35,
     apartmentCount: 10,
     subject: 'Bina Ön İnceleme ve Kentsel Dönüşüm Teklifi',
@@ -202,20 +202,41 @@ export const Contact: React.FC<ContactProps> = ({ companyInfo, onAddInquiry }) =
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-slate-700 mb-1">Bulunduğu İlçe</label>
+                    <label className="block font-bold text-slate-700 mb-1">Bulunduğu İlçe (Avrupa Yakası)</label>
                     <select
                       value={formData.district}
                       onChange={(e) => setFormData({ ...formData, district: e.target.value })}
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-slate-800 font-medium focus:outline-hidden focus:border-teal-600"
                     >
-                      <option value="Kadıköy">Kadıköy</option>
-                      <option value="Üsküdar">Üsküdar</option>
-                      <option value="Beşiktaş">Beşiktaş</option>
-                      <option value="Maltepe">Maltepe</option>
-                      <option value="Bakırköy">Bakırköy</option>
-                      <option value="Ataşehir">Ataşehir</option>
-                      <option value="Zeytinburnu">Zeytinburnu</option>
-                      <option value="Fatih">Fatih</option>
+                      <optgroup label="Fatih & Komşu / Yakın İlçeler">
+                        <option value="Fatih">Fatih (Tarihi Suriçi)</option>
+                        <option value="Zeytinburnu">Zeytinburnu</option>
+                        <option value="Eyüpsultan">Eyüpsultan</option>
+                        <option value="Bayrampaşa">Bayrampaşa</option>
+                        <option value="Beyoğlu">Beyoğlu</option>
+                        <option value="Bakırköy">Bakırköy</option>
+                        <option value="Güngören">Güngören</option>
+                        <option value="Gaziosmanpaşa">Gaziosmanpaşa</option>
+                        <option value="Esenler">Esenler</option>
+                        <option value="Bahçelievler">Bahçelievler</option>
+                        <option value="Şişli">Şişli</option>
+                        <option value="Kağıthane">Kağıthane</option>
+                        <option value="Beşiktaş">Beşiktaş</option>
+                      </optgroup>
+                      <optgroup label="Diğer Avrupa Yakası İlçeleri">
+                        <option value="Bağcılar">Bağcılar</option>
+                        <option value="Sultangazi">Sultangazi</option>
+                        <option value="Küçükçekmece">Küçükçekmece</option>
+                        <option value="Avcılar">Avcılar</option>
+                        <option value="Başakşehir">Başakşehir</option>
+                        <option value="Beylikdüzü">Beylikdüzü</option>
+                        <option value="Esenyurt">Esenyurt</option>
+                        <option value="Büyükçekmece">Büyükçekmece</option>
+                        <option value="Sarıyer">Sarıyer</option>
+                        <option value="Arnavutköy">Arnavutköy</option>
+                        <option value="Silivri">Silivri</option>
+                        <option value="Çatalca">Çatalca</option>
+                      </optgroup>
                     </select>
                   </div>
                   <div>

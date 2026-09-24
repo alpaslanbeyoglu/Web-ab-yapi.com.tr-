@@ -141,24 +141,57 @@ export const KentselDonusumCalculator: React.FC<CalculatorProps> = ({
               <span>1. Daire ve Bina Bilgilerinizi Girin</span>
             </h3>
 
-            {/* District Selection */}
+            {/* District Selection (Sadece Avrupa Yakası - Fatih & Komşu İlçeler Öncelikli) */}
             <div>
-              <label className="block text-xs font-bold uppercase text-slate-300 mb-1.5">
-                Bulunduğu İlçe
-              </label>
+              <div className="flex justify-between items-center mb-1.5">
+                <label className="text-xs font-bold uppercase text-slate-300">
+                  Bulunduğu İlçe (Avrupa Yakası)
+                </label>
+                <span className="text-[10px] font-bold text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded border border-teal-500/20">
+                  Fatih & Komşu İlçeler Öncelikli
+                </span>
+              </div>
               <select
                 value={district}
                 onChange={(e) => setDistrict(e.target.value)}
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-sm font-bold text-white focus:outline-none focus:border-teal-400"
               >
-                <option value="Fatih">Fatih (Tarihi Suriçi Bölgesi)</option>
-                <option value="Zeytinburnu">Zeytinburnu</option>
-                <option value="Kadıköy">Kadıköy</option>
-                <option value="Üsküdar">Üsküdar</option>
-                <option value="Bakırköy">Bakırköy</option>
-                <option value="Maltepe">Maltepe</option>
-                <option value="Ataşehir">Ataşehir</option>
+                <optgroup label="📍 Fatih ve Doğrudan Komşu / Yakın İlçeler (Öncelikli Bölge)">
+                  <option value="Fatih">Fatih (Tarihi Suriçi - Merkez Faaliyet Alanı)</option>
+                  <option value="Zeytinburnu">Zeytinburnu (Fatih Komşusu)</option>
+                  <option value="Eyüpsultan">Eyüpsultan (Haliç / Fatih Komşusu)</option>
+                  <option value="Bayrampaşa">Bayrampaşa (Fatih Komşusu)</option>
+                  <option value="Beyoğlu">Beyoğlu (Haliç Karşısı / Komşu)</option>
+                  <option value="Bakırköy">Bakırköy (Sahil Aksı / Yakın)</option>
+                  <option value="Güngören">Güngören (Yakın Bölge)</option>
+                  <option value="Gaziosmanpaşa">Gaziosmanpaşa (Yakın Bölge)</option>
+                  <option value="Esenler">Esenler (Yakın Bölge)</option>
+                  <option value="Bahçelievler">Bahçelievler (Yakın Bölge)</option>
+                  <option value="Şişli">Şişli (Merkez Aks)</option>
+                  <option value="Kağıthane">Kağıthane (Merkez Aks)</option>
+                  <option value="Beşiktaş">Beşiktaş (Merkez Aks)</option>
+                </optgroup>
+                <optgroup label="🏢 Diğer Avrupa Yakası İlçeleri">
+                  <option value="Bağcılar">Bağcılar</option>
+                  <option value="Sultangazi">Sultangazi</option>
+                  <option value="Küçükçekmece">Küçükçekmece</option>
+                  <option value="Avcılar">Avcılar</option>
+                  <option value="Başakşehir">Başakşehir</option>
+                  <option value="Beylikdüzü">Beylikdüzü</option>
+                  <option value="Esenyurt">Esenyurt</option>
+                  <option value="Büyükçekmece">Büyükçekmece</option>
+                  <option value="Sarıyer">Sarıyer</option>
+                  <option value="Arnavutköy">Arnavutköy</option>
+                  <option value="Silivri">Silivri</option>
+                  <option value="Çatalca">Çatalca</option>
+                </optgroup>
               </select>
+              {['Fatih', 'Zeytinburnu', 'Eyüpsultan', 'Bayrampaşa', 'Beyoğlu', 'Bakırköy', 'Güngören'].includes(district) && (
+                <p className="text-[11px] text-teal-400 mt-1.5 flex items-center gap-1 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-emerald-400" />
+                  <span>Seçilen ilçe AB Yapı'nın merkez şantiye ve suriçi lojistik ağı dahilindedir.</span>
+                </p>
+              )}
             </div>
 
             {/* Building Construction Year */}

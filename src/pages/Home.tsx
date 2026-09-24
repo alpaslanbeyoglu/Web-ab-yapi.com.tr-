@@ -3,6 +3,7 @@ import { Project, IstanbulConstructionStats, CompanyInfo } from '../types';
 import { IstanbulMap } from '../components/IstanbulMap';
 import { KentselDonusumCalculator } from '../components/KentselDonusumCalculator';
 import { MobileQuickGuide } from '../components/MobileQuickGuide';
+import { ComfortPackageOptions } from '../components/ComfortPackageOptions';
 import {
   Building2,
   ShieldCheck,
@@ -198,6 +199,11 @@ export const Home: React.FC<HomeProps> = ({
           rentAssistanceTL={stats.rentAssistancePerMonthTL}
           whatsappNumber={companyInfo.whatsapp}
         />
+      </section>
+
+      {/* Hak Sahiplerine Sunulan Opsiyonel Konfor Paketi */}
+      <section className="max-w-7xl mx-auto px-4 md:px-8">
+        <ComfortPackageOptions />
       </section>
 
       {/* Featured Projects Catalogue Preview */}

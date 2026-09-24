@@ -79,7 +79,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ whatsappNumber }
               <textarea
                 value={userNote}
                 onChange={(e) => setUserNote(e.target.value)}
-                placeholder="Örn: Kadıköy'de 10 dairelik apartmanımız var..."
+                placeholder="Örn: Fatih Cerrahpaşa'da 8 dairelik binamız var..."
                 rows={2}
                 className="w-full p-2 bg-white border border-slate-300 rounded-lg text-slate-800 focus:outline-hidden focus:border-emerald-600"
               />

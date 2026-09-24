@@ -152,7 +152,7 @@ export const Statistics: React.FC<StatisticsProps> = ({ stats, setActiveTab }) =
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
             <input
               type="text"
-              placeholder="İlçe Ara (Örn: Kadıköy)..."
+              placeholder="İlçe Ara (Örn: Fatih)..."
               value={searchDistrict}
               onChange={(e) => setSearchDistrict(e.target.value)}
               className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs font-medium text-slate-800 focus:outline-hidden focus:border-teal-600"
