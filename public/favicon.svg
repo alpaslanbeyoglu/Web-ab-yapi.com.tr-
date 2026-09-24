@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100%" height="100%">
+  <defs>
+    <linearGradient id="favSlateL" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#212b3a" />
+      <stop offset="100%" stop-color="#2a3648" />
+    </linearGradient>
+    <linearGradient id="favSlateR" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#344256" />
+      <stop offset="100%" stop-color="#3e4f67" />
+    </linearGradient>
+    <linearGradient id="favTealL" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#165a66" />
+      <stop offset="100%" stop-color="#1e7382" />
+    </linearGradient>
+    <linearGradient id="favTealR" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#268a9b" />
+      <stop offset="100%" stop-color="#2f9cb0" />
+    </linearGradient>
+    <linearGradient id="favAmberL" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#cb7e1e" />
+      <stop offset="100%" stop-color="#dc8f29" />
+    </linearGradient>
+    <linearGradient id="favAmberR" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e89d33" />
+      <stop offset="100%" stop-color="#f5ab42" />
+    </linearGradient>
+  </defs>
+
+  <!-- Circular or Rounded Modern Icon Base -->
+  <rect width="256" height="256" rx="56" fill="#ffffff" />
+  
+  <g transform="translate(8, 2) scale(0.64)">
+    <!-- LEFT TOWER -->
+    <polygon points="80,130 115,100 115,130" fill="#465874" />
+    <polygon points="115,100 150,130 115,130" fill="#586e90" />
+    <polygon points="80,130 115,130 115,310 80,285" fill="url(#favSlateL)" />
+    <polygon points="115,130 150,130 150,285 115,310" fill="url(#favSlateR)" />
+
+    <!-- RIGHT TOWER -->
+    <polygon points="230,120 265,90 265,120" fill="#efa339" />
+    <polygon points="265,90 300,120 265,120" fill="#fab956" />
+    <polygon points="230,120 265,120 265,315 230,290" fill="url(#favAmberL)" />
+    <polygon points="265,120 300,120 300,290 265,315" fill="url(#favAmberR)" />
+
+    <!-- CENTER TOWER -->
+    <polygon points="155,60 190,25 190,60" fill="#2b94a6" />
+    <polygon points="190,25 225,60 190,60" fill="#4fc9df" />
+    <polygon points="155,60 190,60 190,345 155,315" fill="url(#favTealL)" />
+    <polygon points="190,60 225,60 225,315 190,345" fill="url(#favTealR)" />
+  </g>
+</svg>

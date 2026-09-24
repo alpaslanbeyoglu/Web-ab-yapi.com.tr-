@@ -8,12 +8,12 @@ export const INITIAL_COMPANY_INFO: CompanyInfo = {
   phone: '+90 (551) 010 22 00',
   whatsapp: '+90 (551) 010 22 00',
   email: 'info@ab-yapi.com.tr',
-  address: 'Marmara Cd. No: 64, Kocamustafapaşa Mah.',
+  address: 'Kocamustafapaşa Cad. Çınar Sk. No:2B',
   district: 'Fatih',
   city: 'İstanbul',
   workingHours: 'Pazartesi - Cumartesi: 08:30 - 18:30',
-  mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12042.8!2d28.9352!3d40.9998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab90000000000%3A0x0!2sFatih%2C%20Istanbul!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str',
-  logoUrl: '/logo.png',
+  mapEmbedUrl: 'https://maps.google.com/maps?q=Kocamustafapa%C5%9Fa+Cad.+%C3%87%C4%B1nar+Sk.+No%3A2B+Fatih+%C4%B0stanbul&t=&z=16&ie=UTF8&iwloc=&output=embed',
+  logoUrl: '/logo.svg',
 };
 
 export const INITIAL_STATS: IstanbulConstructionStats = {

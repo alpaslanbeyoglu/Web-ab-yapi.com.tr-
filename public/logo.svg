@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" width="100%" height="100%">
+  <defs>
+    <!-- Realistic 3D Soft Drop Shadow Filter -->
+    <filter id="pillarShadow" x="-20%" y="-10%" width="140%" height="150%" filterUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="9" result="blur" />
+      <feOffset dx="0" dy="16" result="offset" />
+      <feComponentTransfer in="offset" result="softShadow">
+        <feFuncA type="linear" slope="0.32" />
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="softShadow" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14" result="blur" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25" />
+      </feComponentTransfer>
+    </filter>
+
+    <filter id="textShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.22" />
+    </filter>
+
+    <!-- Gradients for subtle realism -->
+    <linearGradient id="slateLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#212b3a" />
+      <stop offset="100%" stop-color="#2a3648" />
+    </linearGradient>
+    <linearGradient id="slateRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#344256" />
+      <stop offset="100%" stop-color="#3e4f67" />
+    </linearGradient>
+    <linearGradient id="slateRoofL" x1="0%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#3b4b62" />
+      <stop offset="100%" stop-color="#495d7b" />
+    </linearGradient>
+    <linearGradient id="slateRoofR" x1="50%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#465874" />
+      <stop offset="100%" stop-color="#586e90" />
+    </linearGradient>
+
+    <!-- Teal Gradients (Center Tower) -->
+    <linearGradient id="tealLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#165a66" />
+      <stop offset="100%" stop-color="#1e7382" />
+    </linearGradient>
+    <linearGradient id="tealRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#268a9b" />
+      <stop offset="100%" stop-color="#2f9cb0" />
+    </linearGradient>
+    <linearGradient id="tealRoofL" x1="0%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#2b94a6" />
+      <stop offset="100%" stop-color="#3bb2c7" />
+    </linearGradient>
+    <linearGradient id="tealRoofR" x1="50%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38a9bd" />
+      <stop offset="100%" stop-color="#4fc9df" />
+    </linearGradient>
+
+    <!-- Amber / Gold Gradients (Right Tower) -->
+    <linearGradient id="amberLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#cb7e1e" />
+      <stop offset="100%" stop-color="#dc8f29" />
+    </linearGradient>
+    <linearGradient id="amberRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e89d33" />
+      <stop offset="100%" stop-color="#f5ab42" />
+    </linearGradient>
+    <linearGradient id="amberRoofL" x1="0%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#efa339" />
+      <stop offset="100%" stop-color="#fab956" />
+    </linearGradient>
+    <linearGradient id="amberRoofR" x1="50%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f5b34d" />
+      <stop offset="100%" stop-color="#ffd078" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(0, 10)">
+    <!-- Ambient Shadow Under Pillars -->
+    <ellipse cx="250" cy="355" rx="150" ry="24" fill="#0b1320" opacity="0.3" filter="url(#softGlow)" />
+    <ellipse cx="250" cy="350" rx="120" ry="16" fill="#0b1320" opacity="0.4" filter="url(#softGlow)" />
+
+    <!-- 3D Prisms Group with Drop Shadow -->
+    <g filter="url(#pillarShadow)">
+      
+      <!-- 1. LEFT TOWER (Slate / Charcoal) -->
+      <!-- Left pillar shadow onto surface -->
+      <g id="tower-slate">
+        <!-- Roof Left Facet -->
+        <polygon points="144,142 174,114 174,142" fill="url(#slateRoofL)" />
+        <!-- Roof Right Facet -->
+        <polygon points="174,114 204,142 174,142" fill="url(#slateRoofR)" />
+        <!-- Body Left Facet -->
+        <polygon points="144,142 174,142 174,324 144,298" fill="url(#slateLeft)" />
+        <!-- Body Right Facet -->
+        <polygon points="174,142 204,142 204,298 174,324" fill="url(#slateRight)" />
+      </g>
+
+      <!-- 3. RIGHT TOWER (Gold / Amber Ochre) -->
+      <g id="tower-amber">
+        <!-- Roof Left Facet -->
+        <polygon points="296,128 326,98 326,128" fill="url(#amberRoofL)" />
+        <!-- Roof Right Facet -->
+        <polygon points="326,98 356,128 326,128" fill="url(#amberRoofR)" />
+        <!-- Body Left Facet -->
+        <polygon points="296,128 326,128 326,328 296,302" fill="url(#amberLeft)" />
+        <!-- Body Right Facet -->
+        <polygon points="326,128 356,128 356,302 326,328" fill="url(#amberRight)" />
+      </g>
+
+      <!-- 2. CENTER TOWER (Tall Teal - Layered in Front) -->
+      <g id="tower-teal">
+        <!-- Roof Left Facet -->
+        <polygon points="214,70 250,38 250,70" fill="url(#tealRoofL)" />
+        <!-- Roof Right Facet -->
+        <polygon points="250,38 286,70 250,70" fill="url(#tealRoofR)" />
+        <!-- Body Left Facet -->
+        <polygon points="214,70 250,70 250,358 214,328" fill="url(#tealLeft)" />
+        <!-- Body Right Facet -->
+        <polygon points="250,70 286,70 286,328 250,358" fill="url(#tealRight)" />
+      </g>
+    </g>
+
+    <!-- Typography -->
+    <!-- "AB YAPI" Brand Name -->
+    <text x="250" y="445" 
+          font-family="'Cabinet Grotesk', 'Outfit', 'Montserrat', 'Inter', -apple-system, sans-serif" 
+          font-size="62" 
+          font-weight="900" 
+          fill="#1c2534" 
+          letter-spacing="0.08em" 
+          text-anchor="middle"
+          filter="url(#textShadow)">
+      AB YAPI
+    </text>
+
+    <!-- "GÜVENE YÜKSELEN YAPILAR" Slogan -->
+    <text x="250" y="492" 
+          font-family="'Plus Jakarta Sans', 'Inter', sans-serif" 
+          font-size="16.5" 
+          font-weight="800" 
+          fill="#334155" 
+          letter-spacing="0.22em" 
+          text-anchor="middle">
+      GÜVENE YÜKSELEN YAPILAR
+    </text>
+  </g>
+</svg>

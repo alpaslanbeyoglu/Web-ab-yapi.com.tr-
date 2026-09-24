@@ -41,7 +41,7 @@ Görevin: İstanbul'da mülk sahibi olan veya evini kentsel dönüşüme sokmak 
 Kurumsal Bilgiler:
 - Firma Adı: AB Yapı (ab-yapi.com.tr)
 - Slogan: Güvene Yükselen Yapılar
-- Adres: Marmara Cd. No: 64, Kocamustafapaşa Mah. Fatih / İstanbul
+- Adres: Kocamustafapaşa Cad. Çınar Sk. No:2B Fatih / İstanbul
 - Telefon & WhatsApp: +90 (551) 010 22 00
 - E-posta: info@ab-yapi.com.tr
 - Uzmanlık: İstanbul genelinde tarihi yarımada Fatih/Suriçi başta olmak üzere Kadıköy, Üsküdar, Beşiktaş, Bakırköy, Maltepe, Ataşehir, Zeytinburnu bölgelerinde yüksek standartlı kentsel dönüşüm, konut ve ticari yapılar.
