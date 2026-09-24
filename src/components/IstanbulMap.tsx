@@ -39,6 +39,11 @@ export const IstanbulMap: React.FC<IstanbulMapProps> = ({
       mapInstanceRef.current = null;
     }
 
+    const container = mapContainerRef.current as any;
+    if (container._leaflet_id) {
+      container._leaflet_id = null;
+    }
+
     const map = L.map(mapContainerRef.current, {
       center: [41.005, 28.938],
       zoom: 14,
