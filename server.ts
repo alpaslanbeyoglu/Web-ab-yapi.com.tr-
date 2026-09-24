@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { GoogleGenAI } from '@google/genai';
 
@@ -99,26 +100,9 @@ async function startServer() {
     app.use('*', async (req, res, next) => {
       const url = req.originalUrl;
       try {
-        let template = await vite.transformIndexHtml(
-          url,
-          `<!doctype html>
-<html lang="tr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AB Yapı | Güvene Yükselen Yapılar - İstanbul Kentsel Dönüşüm & İnşaat</title>
-    <meta name="description" content="AB Yapı kurumsal web sitesi. İstanbul kentsel dönüşüm süreçleri, inşaat istatistikleri, tamamlanan ve devam eden projelerimiz, etkileşimli harita ve yasal mevzuat rehberi." />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-teal-600 selection:text-white">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>`
-        );
+        const indexPath = path.resolve(__dirname, 'index.html');
+        let indexHtml = fs.readFileSync(indexPath, 'utf-8');
+        let template = await vite.transformIndexHtml(url, indexHtml);
         res.status(200).set({ 'Content-Type': 'text/html' }).end(template);
       } catch (e: any) {
         vite.ssrFixStacktrace(e);

@@ -30,16 +30,18 @@ import { Contact } from './pages/Contact';
 import { AdminPanel } from './pages/AdminPanel';
 
 export default function App() {
+  const validTabs = ['home', 'stats', 'projects', 'map', 'guide', 'about', 'contact', 'admin'];
+
   const [activeTab, setActiveTab] = useState<string>(() => {
     try {
       const params = new URLSearchParams(window.location.search);
       const p = params.get('p');
       if (p) {
         const cleaned = p.replace('/', '');
-        if (cleaned) return cleaned;
+        if (validTabs.includes(cleaned)) return cleaned;
       }
       const hash = window.location.hash.replace('#', '');
-      if (hash) return hash;
+      if (validTabs.includes(hash)) return hash;
     } catch {
       // ignore
     }
@@ -210,63 +212,37 @@ export default function App() {
 
       {/* Main Page Router View */}
       <main className="flex-1">
-        {activeTab === 'home' && (
-          <Home
-            stats={stats}
-            projects={projects}
-            companyInfo={companyInfo}
-            setActiveTab={setActiveTab}
-            onSelectProject={(proj) => {
-              setSelectedProject(proj);
-              setActiveTab('projects');
-            }}
-            openAIConsultant={() => setIsAIConsultantOpen(true)}
-          />
-        )}
-
-        {activeTab === 'stats' && (
+        {activeTab === 'stats' ? (
           <Statistics
             stats={stats}
             isAdmin={isAdmin}
             setActiveTab={setActiveTab}
           />
-        )}
-
-        {activeTab === 'projects' && (
+        ) : activeTab === 'projects' ? (
           <Projects
             projects={projects}
             selectedProject={selectedProject}
             setSelectedProject={setSelectedProject}
             whatsappNumber={companyInfo.whatsapp}
           />
-        )}
-
-        {activeTab === 'map' && (
+        ) : activeTab === 'map' ? (
           <MapView
             projects={projects}
             setSelectedProject={setSelectedProject}
             setActiveTab={setActiveTab}
           />
-        )}
-
-        {activeTab === 'guide' && (
+        ) : activeTab === 'guide' ? (
           <KentselDonusumGuide
             guides={guides}
             rentAssistanceTL={stats.rentAssistancePerMonthTL}
             whatsappNumber={companyInfo.whatsapp}
             openAIConsultant={() => setIsAIConsultantOpen(true)}
           />
-        )}
-
-        {activeTab === 'about' && (
+        ) : activeTab === 'about' ? (
           <AboutUs companyInfo={companyInfo} setActiveTab={setActiveTab} />
-        )}
-
-        {activeTab === 'contact' && (
+        ) : activeTab === 'contact' ? (
           <Contact companyInfo={companyInfo} onAddInquiry={handleAddInquiry} />
-        )}
-
-        {activeTab === 'admin' && (
+        ) : activeTab === 'admin' ? (
           <AdminPanel
             stats={stats}
             setStats={setStats}
@@ -277,6 +253,18 @@ export default function App() {
             inquiries={inquiries}
             setInquiries={setInquiries}
             onResetData={handleResetData}
+          />
+        ) : (
+          <Home
+            stats={stats}
+            projects={projects}
+            companyInfo={companyInfo}
+            setActiveTab={setActiveTab}
+            onSelectProject={(proj) => {
+              setSelectedProject(proj);
+              setActiveTab('projects');
+            }}
+            openAIConsultant={() => setIsAIConsultantOpen(true)}
           />
         )}
       </main>
