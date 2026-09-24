@@ -1,0 +1,6 @@
+{
+  "name": "AB Yapı - Güvene Yükselen Yapılar | Kurumsal Web Portalı",
+  "description": "AB Yapı kurumsal web sitesi. İstanbul kentsel dönüşüm süreçleri, inşaat istatistikleri, tamamlanan ve devam eden kentsel dönüşüm projelerimiz, etkileşimli harita ve yasal mevzuat rehberi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
