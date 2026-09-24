@@ -30,7 +30,21 @@ import { Contact } from './pages/Contact';
 import { AdminPanel } from './pages/AdminPanel';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<string>('home');
+  const [activeTab, setActiveTab] = useState<string>(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const p = params.get('p');
+      if (p) {
+        const cleaned = p.replace('/', '');
+        if (cleaned) return cleaned;
+      }
+      const hash = window.location.hash.replace('#', '');
+      if (hash) return hash;
+    } catch {
+      // ignore
+    }
+    return 'home';
+  });
   const [adminUser, setAdminUser] = useState<AdminUser | null>(() => {
     try {
       const saved = localStorage.getItem('abyapi_admin_user');
