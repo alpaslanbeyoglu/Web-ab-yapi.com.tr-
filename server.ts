@@ -41,10 +41,10 @@ Görevin: İstanbul'da mülk sahibi olan veya evini kentsel dönüşüme sokmak 
 Kurumsal Bilgiler:
 - Firma Adı: AB Yapı (ab-yapi.com.tr)
 - Slogan: Güvene Yükselen Yapılar
-- Adres: Barbaros Bulvarı No:142 Beşiktaş / İstanbul
-- Telefon: +90 (212) 555 00 22 / WhatsApp: +90 (532) 555 00 22
+- Adres: Marmara Cd. No: 64, Kocamustafapaşa Mah. Fatih / İstanbul
+- Telefon & WhatsApp: +90 (551) 010 22 00
 - E-posta: info@ab-yapi.com.tr
-- Uzmanlık: İstanbul genelinde Kadıköy, Üsküdar, Beşiktaş, Bakırköy, Maltepe, Ataşehir, Zeytinburnu bölgelerinde yüksek standartlı kentsel dönüşüm, konut ve ticari yapılar.
+- Uzmanlık: İstanbul genelinde tarihi yarımada Fatih/Suriçi başta olmak üzere Kadıköy, Üsküdar, Beşiktaş, Bakırköy, Maltepe, Ataşehir, Zeytinburnu bölgelerinde yüksek standartlı kentsel dönüşüm, konut ve ticari yapılar.
 
 Önemli Konular ve Bilgiler:
 1. 6306 Sayılı Kanun Son Güncellemeler: Yapı sahiplerinin 50%+1 (salt çoğunluk) ile karar alma hakkı, bina risk tespiti süreci, tebligat süreleri.

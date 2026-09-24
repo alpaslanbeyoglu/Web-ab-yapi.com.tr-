@@ -4,11 +4,10 @@ import { BarChart3, TrendingUp, AlertTriangle, Building, ShieldCheck, CheckCircl
 
 interface StatisticsProps {
   stats: IstanbulConstructionStats;
-  isAdmin: boolean;
   setActiveTab: (tab: string) => void;
 }
 
-export const Statistics: React.FC<StatisticsProps> = ({ stats, isAdmin, setActiveTab }) => {
+export const Statistics: React.FC<StatisticsProps> = ({ stats, setActiveTab }) => {
   const [searchDistrict, setSearchDistrict] = useState('');
 
   const filteredDistricts = stats.districtBreakdown.filter((d) =>
@@ -37,14 +36,6 @@ export const Statistics: React.FC<StatisticsProps> = ({ stats, isAdmin, setActiv
           <div className="pt-2 flex items-center gap-2 text-xs text-teal-400 font-semibold">
             <Calendar className="w-3.5 h-3.5" />
             <span>Son Güncelleme Tarihi: {stats.lastUpdated}</span>
-            {isAdmin && (
-              <button
-                onClick={() => setActiveTab('admin')}
-                className="ml-3 text-amber-400 font-bold hover:underline"
-              >
-                (Yönetici Panelinden Düzenle)
-              </button>
-            )}
           </div>
         </div>
       </div>

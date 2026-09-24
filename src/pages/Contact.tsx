@@ -255,10 +255,10 @@ export const Contact: React.FC<ContactProps> = ({ companyInfo, onAddInquiry }) =
           <div className="bg-white p-4 rounded-2xl shadow-md border border-slate-200 overflow-hidden space-y-2">
             <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
               <MapPin className="w-4 h-4 text-teal-700" />
-              <span>AB Yapı Beşiktaş Genel Merkez Konumu</span>
+              <span>AB Yapı Genel Merkez Konumu ({companyInfo.district})</span>
             </div>
             <iframe
-              title="AB Yapı Beşiktaş Merkez Konum"
+              title="AB Yapı Merkez Konum"
               src={companyInfo.mapEmbedUrl}
               className="w-full h-56 rounded-xl border-0"
               loading="lazy"

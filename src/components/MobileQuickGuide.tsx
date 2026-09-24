@@ -113,7 +113,7 @@ export const MobileQuickGuide: React.FC<MobileQuickGuideProps> = ({
           }`}
         >
           <Building2 className="w-4 h-4 text-blue-300" />
-          <span>3. Müteahhit Geçmişi</span>
+          <span>3. Firma Özeti</span>
         </button>
 
         <button
@@ -125,7 +125,7 @@ export const MobileQuickGuide: React.FC<MobileQuickGuideProps> = ({
           }`}
         >
           <Phone className="w-4 h-4 text-emerald-300" />
-          <span>4. Müteahhitten Bilgi Al</span>
+          <span>4. Bize Danışın</span>
         </button>
       </div>
 
@@ -203,7 +203,7 @@ export const MobileQuickGuide: React.FC<MobileQuickGuideProps> = ({
               className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-xs transition-all shadow-md"
             >
               <MessageSquare className="w-4 h-4 fill-white text-emerald-600" />
-              <span>Bu Maliyet İçin Müteahhitten Bilgi Al</span>
+              <span>Bu Maliyet İçin Bize Danışın</span>
             </a>
           </div>
         </div>
@@ -253,12 +253,12 @@ export const MobileQuickGuide: React.FC<MobileQuickGuideProps> = ({
         </div>
       )}
 
-      {/* TAB 3: MUTEAHHIT GECMISI & AB YAPI (MOBIL OZET) */}
+      {/* TAB 3: FIRMA OZETI & AB YAPI (MOBIL OZET) */}
       {activeTab === 'muteahhit' && (
         <div className="bg-slate-950 p-4 rounded-2xl border border-amber-500/30 space-y-3 animate-fadeIn text-xs">
           <div className="flex items-center gap-2 text-amber-400 font-extrabold border-b border-slate-800 pb-2">
             <Building2 className="w-4 h-4" />
-            <span>Müteahhit Geçmişi & AB Yapı Güvencesi</span>
+            <span>Firma Özeti & AB Yapı Güvencesi</span>
           </div>
 
           <p className="text-slate-300 leading-relaxed text-[11px]">
@@ -291,27 +291,27 @@ export const MobileQuickGuide: React.FC<MobileQuickGuideProps> = ({
         </div>
       )}
 
-      {/* TAB 4: ILETISIM & MUTEAHHITTEN BILGI AL (MOBIL OZET) */}
+      {/* TAB 4: ILETISIM & BIZE DANISIN (MOBIL OZET) */}
       {activeTab === 'iletisim' && (
         <div className="bg-slate-950 p-4 rounded-2xl border border-teal-500/30 space-y-3 animate-fadeIn text-xs">
           <div className="flex items-center gap-2 text-teal-400 font-extrabold border-b border-slate-800 pb-2">
             <Phone className="w-4 h-4" />
-            <span>Müteahhitle Doğrudan İletişime Geçin</span>
+            <span>Bizimle Doğrudan İletişime Geçin & Danışın</span>
           </div>
 
           <p className="text-slate-300 text-[11px]">
-            Binanızın durumu veya kentsel dönüşüm şartları hakkında teknik ekibimiz ve müteahhidimizle doğrudan görüşün:
+            Binanızın durumu veya kentsel dönüşüm şartları hakkında uzman teknik ekibimiz ve danışmanlarımızla doğrudan görüşün:
           </p>
 
           <div className="space-y-2 pt-1">
             <a
-              href={`https://wa.me/${formattedWhatsapp}?text=Merhaba%2C%20AB%20Yap%C4%B1%20m%C3%BCteahhidinden%20binam%C4%B1z%20i%C3%A7in%20bilgi%20almak%20istiyorum.`}
+              href={`https://wa.me/${formattedWhatsapp}?text=Merhaba%2C%20AB%20Yap%C4%B1%27dan%20binam%C4%B1z%20i%C3%A7in%20dan%C4%B1%C5%9Fmanl%C4%B1k%20ve%20bilgi%20almak%20istiyorum.`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full bg-gradient-to-r from-teal-600 via-teal-700 to-slate-900 hover:from-teal-500 hover:to-slate-800 text-white font-extrabold p-3 rounded-xl flex items-center justify-center gap-2 text-xs shadow-md border border-teal-500/30"
             >
               <MessageSquare className="w-4 h-4 fill-amber-400 text-slate-900" />
-              <span>WhatsApp İle Müteahhitten Bilgi Al</span>
+              <span>WhatsApp İle Bize Danışın</span>
             </a>
 
             <a
