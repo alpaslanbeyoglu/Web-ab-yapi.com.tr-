@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { GuideArticle } from '../types';
 import { KentselDonusumCalculator } from '../components/KentselDonusumCalculator';
 import { ComfortPackageOptions } from '../components/ComfortPackageOptions';
-import { FileText, Scale, CheckCircle2, Bot, HelpCircle, ArrowRight, BookOpen, ShieldAlert, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
+import { KentselDonusumFAQ } from '../components/KentselDonusumFAQ';
+import { KentselDonusumTimeline } from '../components/KentselDonusumTimeline';
+import { FileText, Scale, CheckCircle2, Bot, HelpCircle, ArrowRight, BookOpen, ShieldAlert, Sparkles } from 'lucide-react';
 
 interface GuideProps {
   guides: GuideArticle[];
@@ -17,7 +19,6 @@ export const KentselDonusumGuide: React.FC<GuideProps> = ({
   whatsappNumber,
   openAIConsultant,
 }) => {
-  const [activeFaq, setActiveFaq] = useState<number | null>(0);
   const [selectedCategory, setSelectedCategory] = useState<string>('Tümü');
 
   const categories = ['Tümü', 'Yasal Mevzuat', 'Finans & Destek', 'Teknik Standartlar'];
@@ -25,25 +26,6 @@ export const KentselDonusumGuide: React.FC<GuideProps> = ({
   const filteredGuides = guides.filter(
     (g) => selectedCategory === 'Tümü' || g.category === selectedCategory
   );
-
-  const faqs = [
-    {
-      q: '6306 Sayılı Kanuna göre %50+1 çoğunluk kararı nasıl uygulanır?',
-      a: 'T.C. Çevre, Şehircilik ve İklim Değişikliği Bakanlığı\'nın yaptığı son yasal düzenleme ile binada kentsel dönüşüm kararı alınabilmesi için arsa payı oranının %50 + 1 (Salt Çoğunluk) şartı getirilmiştir. Karara katılmayan veya muhalif kalan maliklere noter aracılığıyla 15 günlük ihtar gönderilir. Süre sonunda anlaşma sağlanamazsa hisseleri bakanlık il müdürlüğü tarafından diğer paydaşlara açık artırma ile satılır.',
-    },
-    {
-      q: 'İstanbul kentsel dönüşüm kira yardımı ne kadar ve kaç ay ödenir?',
-      a: 'İstanbul ilinde riskli yapı olarak tescillenen binalarda ikamet eden hak sahiplerine 18 ay boyunca aylık güncel tutarlarda devlet kira yardımı ödemesi yapılmaktadır. Kiracılara ise bir defaya mahsat taşınma desteği verilir.',
-    },
-    {
-      q: 'Dönüşüm sürecinde noter, tapu ve KDV masrafları ne kadardır?',
-      a: '6306 sayılı kanun kapsamında gerçekleştirilen kentsel dönüşüm projelerinde tapu harcı, damga vergisi, noter masrafları ve belediye harçları %100 muaftır. Ayrıca konut teslimlerinde inşaat KDV oranı %1 olarak uygulanır.',
-    },
-    {
-      q: 'AB Yapı ile yapılan kentsel dönüşüm sözleşmesinin garantileri nelerdir?',
-      a: 'AB Yapı tüm dönüşüm projelerinde gecikme cezalı tazminat maddeleri, banka teminat mektubu güvencesi ve C40/C50 yüksek dayanımlı beton standartları ile çalışır. İnşaat süresince tüm süreç hak sahipleri tarafından canlı ve şeffaf olarak takip edilebilir.',
-    },
-  ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 space-y-12">
@@ -71,56 +53,8 @@ export const KentselDonusumGuide: React.FC<GuideProps> = ({
         </div>
       </div>
 
-      {/* 5-Step Process Roadmap Cards */}
-      <div className="space-y-6">
-        <div className="text-center max-w-xl mx-auto space-y-1">
-          <span className="text-xs font-extrabold uppercase text-teal-700 tracking-wider">
-            Adım Adım Yol Haritası
-          </span>
-          <h2 className="text-2xl font-extrabold text-slate-900 font-outfit">
-            5 Adımda Güvenli Kentsel Dönüşüm Süreci
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          {[
-            {
-              num: '01',
-              title: 'Bina Risk Tespiti',
-              desc: 'Lisanslı idareden karot ve demir analizi alınarak bina risk raporu hazırlanır.',
-            },
-            {
-              num: '02',
-              title: '%50+1 Karar',
-              desc: 'Kat malikleri kurulunda salt çoğunluk ile AB Yapı dönüşüm teklifi onaylanır.',
-            },
-            {
-              num: '03',
-              title: 'Sözleşme & Proje',
-              desc: 'Noter onaylı sıfır riskli kat karşılığı inşaat sözleşmesi imzalanır.',
-            },
-            {
-              num: '04',
-              title: 'Yıkım & İnşaat',
-              desc: 'Belediye ruhsatı alınır, kira yardımı başlar ve C40 beton ile yapım başlar.',
-            },
-            {
-              num: '05',
-              title: 'Anahtar Teslim',
-              desc: 'İskan alınır, kat mülkiyeti tapuları ve yeni konutlar hak sahiplerine teslim edilir.',
-            },
-          ].map((step, idx) => (
-            <div
-              key={idx}
-              className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm relative space-y-3 hover:border-teal-500 transition-colors"
-            >
-              <div className="text-3xl font-black text-teal-600 font-outfit">{step.num}</div>
-              <h3 className="font-extrabold text-slate-900 text-sm">{step.title}</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Visual Hukuki & Teknik Kentsel Dönüşüm Zaman Çizelgesi */}
+      <KentselDonusumTimeline whatsappNumber={whatsappNumber} />
 
       {/* Guide Articles Grid */}
       <div className="space-y-6">
@@ -198,46 +132,8 @@ export const KentselDonusumGuide: React.FC<GuideProps> = ({
       {/* Hak Sahiplerine Sunulan Opsiyonel Konfor Paketi */}
       <ComfortPackageOptions />
 
-      {/* FAQ Accordion Section */}
-      <div className="bg-white rounded-3xl shadow-md border border-slate-200 p-6 md:p-10 space-y-6">
-        <div className="text-center max-w-xl mx-auto space-y-1">
-          <span className="text-xs font-extrabold uppercase text-teal-700 tracking-wider">
-            Sıkça Sorulan Sorular
-          </span>
-          <h2 className="text-2xl font-extrabold text-slate-900 font-outfit">
-            Kentsel Dönüşüm Hakkında Merak Edilenler
-          </h2>
-        </div>
-
-        <div className="space-y-3 max-w-3xl mx-auto">
-          {faqs.map((faq, idx) => {
-            const isOpen = activeFaq === idx;
-            return (
-              <div
-                key={idx}
-                className="border border-slate-200 rounded-2xl overflow-hidden transition-all"
-              >
-                <button
-                  onClick={() => setActiveFaq(isOpen ? null : idx)}
-                  className="w-full text-left p-4 md:p-5 bg-slate-50 hover:bg-teal-50/50 font-bold text-slate-900 text-sm md:text-base flex justify-between items-center gap-4"
-                >
-                  <span>{faq.q}</span>
-                  {isOpen ? (
-                    <ChevronUp className="w-5 h-5 text-teal-700 shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
-                  )}
-                </button>
-                {isOpen && (
-                  <div className="p-4 md:p-5 text-xs md:text-sm text-slate-700 leading-relaxed bg-white border-t border-slate-100">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      {/* Dynamically Filterable FAQ Accordion Component */}
+      <KentselDonusumFAQ whatsappNumber={whatsappNumber} />
     </div>
   );
 };
