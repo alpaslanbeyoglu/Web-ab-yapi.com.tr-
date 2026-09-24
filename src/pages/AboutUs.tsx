@@ -160,7 +160,7 @@ export const AboutUs: React.FC<AboutProps> = ({ companyInfo, setActiveTab }) => 
               </h3>
             </div>
             <p className="text-slate-700 text-sm leading-relaxed pl-1">
-              Geleneksel inşaat kültürümüzü modern mimari trendlerle zenginleştirerek, müşterilerimiz için hem yüksek kaliteli hem de bütçe dostu, ulaşılabilir ve akılcı yaşam alanları inşa eden öncü bir marka olmaktır.
+              Geleneksel inşaat kültürümüzü modern mühendislik standartlarıyla birleştirerek, hak sahiplerimiz için yüksek kaliteli, sağlam, depreme dayanıklı ve huzurlu yaşam alanları inşa eden güvenilir ve köklü bir marka olmaktır.
             </p>
           </div>
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { GuideArticle } from '../types';
 import { KentselDonusumCalculator } from '../components/KentselDonusumCalculator';
-import { ComfortPackageOptions } from '../components/ComfortPackageOptions';
 import { FileText, Scale, CheckCircle2, Bot, HelpCircle, ArrowRight, BookOpen, ShieldAlert, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface GuideProps {
@@ -194,9 +193,6 @@ export const KentselDonusumGuide: React.FC<GuideProps> = ({
         rentAssistanceTL={rentAssistanceTL}
         whatsappNumber={whatsappNumber}
       />
-
-      {/* Optional High-Tech Comfort Package Section */}
-      <ComfortPackageOptions />
 
       {/* FAQ Accordion Section */}
       <div className="bg-white rounded-3xl shadow-md border border-slate-200 p-6 md:p-10 space-y-6">

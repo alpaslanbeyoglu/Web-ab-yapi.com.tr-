@@ -3,7 +3,6 @@ import { Project, IstanbulConstructionStats, CompanyInfo } from '../types';
 import { IstanbulMap } from '../components/IstanbulMap';
 import { KentselDonusumCalculator } from '../components/KentselDonusumCalculator';
 import { MobileQuickGuide } from '../components/MobileQuickGuide';
-import { ComfortPackageOptions } from '../components/ComfortPackageOptions';
 import {
   Building2,
   ShieldCheck,
@@ -57,7 +56,7 @@ export const Home: React.FC<HomeProps> = ({
           <div className="max-w-2xl space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-teal-500/20 text-teal-300 rounded-full text-xs font-bold uppercase tracking-wider border border-teal-400/30 backdrop-blur-md">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>İstanbul Kentsel Dönüşüm & İnşaat Lideri</span>
+              <span>Kentsel Dönüşüm & Güvenli Yapı Hizmetleri</span>
             </div>
 
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold font-outfit tracking-tight leading-tight text-white drop-shadow-sm">
@@ -199,11 +198,6 @@ export const Home: React.FC<HomeProps> = ({
           rentAssistanceTL={stats.rentAssistancePerMonthTL}
           whatsappNumber={companyInfo.whatsapp}
         />
-      </section>
-
-      {/* Optional High-Tech Comfort Package Section */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8">
-        <ComfortPackageOptions />
       </section>
 
       {/* Featured Projects Catalogue Preview */}
