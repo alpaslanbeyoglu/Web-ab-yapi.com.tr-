@@ -123,7 +123,7 @@ export const IstanbulMap: React.FC<IstanbulMapProps> = ({
       });
     };
 
-    // AB Yapı Genel Merkez Ofisi İkonu (Altın & Lacivert Bina Rozeti)
+    // AB Yapı Kocamustafapaşa Ofisi İkonu (Altın & Lacivert Bina Rozeti)
     const createOfficeMarkerIcon = () => {
       return L.divIcon({
         html: `
@@ -168,8 +168,8 @@ export const IstanbulMap: React.FC<IstanbulMapProps> = ({
 
     officeMarker.bindPopup(`
       <div style="font-family: system-ui; width: 200px; text-align: left; padding: 4px;">
-        <div style="font-size: 10px; font-weight: 800; color: #d97706; text-transform: uppercase;">🏢 GENEL MERKEZ</div>
-        <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 2px;">AB Yapı Merkez Ofisi</div>
+        <div style="font-size: 10px; font-weight: 800; color: #d97706; text-transform: uppercase;">🏢 OFİSİMİZ</div>
+        <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 2px;">AB Yapı Kocamustafapaşa Ofisi</div>
         <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Kocamustafapaşa Cad. Çınar Sk. No: 2B, Fatih / İstanbul</div>
       </div>
     `);
@@ -229,7 +229,7 @@ export const IstanbulMap: React.FC<IstanbulMapProps> = ({
             <span>AB Yapı Proje Lokasyon Haritası</span>
           </h3>
           <p className="text-xs text-slate-400">
-            Fatih Suriçi bölgesindeki kesin koordinatlı projelerimiz ve merkez ofisimiz
+            Fatih bölgesindeki kesin koordinatlı projelerimiz ve ofisimiz
           </p>
         </div>
 
@@ -250,7 +250,7 @@ export const IstanbulMap: React.FC<IstanbulMapProps> = ({
             </div>
             <div className="flex items-center gap-1.5">
               <span className="w-3 h-3 rounded-full bg-slate-950 border border-amber-400"></span>
-              <span className="text-amber-300">Merkez Ofis</span>
+              <span className="text-amber-300">Ofisimiz</span>
             </div>
           </div>
 

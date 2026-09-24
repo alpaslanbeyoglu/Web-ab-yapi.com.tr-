@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Project, IstanbulConstructionStats, CompanyInfo } from '../types';
 import { KentselDonusumCalculator } from '../components/KentselDonusumCalculator';
+import { useLanguage } from '../context/LanguageContext';
 import {
   Building2,
   ShieldCheck,
@@ -36,6 +37,7 @@ export const Home: React.FC<HomeProps> = ({
   openAIConsultant,
 }) => {
   const featuredProjects = projects.slice(0, 3);
+  const { t, language } = useLanguage();
 
   // 3D Gyroscope & Mouse Parallax Tilt State
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -53,7 +55,7 @@ export const Home: React.FC<HomeProps> = ({
     const handleOrientation = (e: DeviceOrientationEvent) => {
       if (e.gamma !== null && e.beta !== null) {
         setHasGyro(true);
-        // Clamp angles: gamma (-45 to 45), beta (0 to 90)
+        // Clamp angles: gamma (-35 to 45), beta (0 to 90)
         const g = Math.max(-35, Math.min(35, e.gamma));
         const b = Math.max(15, Math.min(75, e.beta)) - 45; // center around 45 deg tilt
         targetX = (g / 35) * 16; // +/- 16px max shift
@@ -141,21 +143,17 @@ export const Home: React.FC<HomeProps> = ({
             {/* Top Pill with 3D Depth */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-900/80 text-amber-400 rounded-full text-xs font-bold uppercase tracking-wider border border-amber-500/40 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Fatih Suriçi Kentsel Dönüşüm & İnşaat</span>
+              <span>{t('hero.badge')}</span>
             </div>
 
             {/* Hero Main Heading */}
             <h1 className="text-3xl md:text-5xl lg:text-5.5xl font-black font-outfit tracking-tight leading-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-              İstanbul'un Geleceğine{' '}
-              <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-200 bg-clip-text text-transparent">
-                Güvene Yükselen
-              </span>{' '}
-              Sağlam Yapılar
+              {t('hero.title')}
             </h1>
 
             {/* Hero Subtitle */}
             <p className="text-sm md:text-base text-slate-300 leading-relaxed max-w-xl drop-shadow-sm">
-              6306 sayılı kanun kapsamında Fatih Suriçi bölgesinde depreme tam dayanıklı, modern mimarili ve zamanında teslim garantili yaşam alanları inşa ediyoruz.
+              {t('hero.desc')}
             </p>
 
             {/* CTA Buttons */}
@@ -164,7 +162,7 @@ export const Home: React.FC<HomeProps> = ({
                 onClick={() => setActiveTab('projects')}
                 className="bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black px-6 py-3.5 rounded-2xl shadow-[0_10px_25px_-5px_rgba(245,158,11,0.5)] transition-all flex items-center gap-2 text-xs md:text-sm cursor-pointer active:scale-95"
               >
-                <span>Projelerimiz ({projects.length} Eser)</span>
+                <span>{t('hero.btnProjects')} ({projects.length})</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -173,7 +171,7 @@ export const Home: React.FC<HomeProps> = ({
                 className="bg-slate-900/90 hover:bg-slate-800 text-slate-100 border border-slate-700/80 backdrop-blur-md font-bold px-5 py-3.5 rounded-2xl transition-all flex items-center gap-2 text-xs md:text-sm cursor-pointer shadow-lg active:scale-95"
               >
                 <MapPin className="w-4 h-4 text-amber-400" />
-                <span>İnteraktif Proje Haritası</span>
+                <span>{t('hero.btnMap')}</span>
               </button>
 
               <button
@@ -181,7 +179,7 @@ export const Home: React.FC<HomeProps> = ({
                 className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 font-bold px-4 py-3.5 rounded-2xl transition-all flex items-center gap-2 text-xs md:text-sm cursor-pointer active:scale-95"
               >
                 <Bot className="w-4 h-4 text-amber-300" />
-                <span>AI Dönüşüm Danışmanı</span>
+                <span>{t('hero.btnAI')}</span>
               </button>
             </div>
           </div>
@@ -201,7 +199,7 @@ export const Home: React.FC<HomeProps> = ({
                 ₺1.850.000
               </div>
               <p className="text-[11px] font-semibold text-slate-500 leading-tight">
-                Yarısı Bizden Hibe + Kredi
+                {t('stats.halfUs')}
               </p>
             </div>
           </div>
@@ -215,7 +213,7 @@ export const Home: React.FC<HomeProps> = ({
                 21+ Proje
               </div>
               <p className="text-[11px] font-semibold text-slate-500 leading-tight">
-                Fatih Suriçi Tamamlanan
+                {t('stats.totalProjects')}
               </p>
             </div>
           </div>
@@ -229,7 +227,7 @@ export const Home: React.FC<HomeProps> = ({
                 ₺7.000 / Ay
               </div>
               <p className="text-[11px] font-semibold text-slate-500 leading-tight">
-                Devlet Kira Yardımı Desteği
+                {t('stats.rentAssistance')}
               </p>
             </div>
           </div>
@@ -240,10 +238,10 @@ export const Home: React.FC<HomeProps> = ({
             </div>
             <div>
               <div className="text-lg md:text-xl font-black text-slate-900 font-outfit">
-                %100 Güven
+                {t('stats.safetyTitle')}
               </div>
               <p className="text-[11px] font-semibold text-slate-500 leading-tight">
-                C40/50 Deprem Güvenliği
+                {t('stats.safety')}
               </p>
             </div>
           </div>
@@ -256,10 +254,10 @@ export const Home: React.FC<HomeProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 pb-3">
           <div>
             <span className="text-[11px] font-black uppercase text-amber-600 tracking-wider">
-              Projelerimiz & Şantiyelerimiz
+              {t('home.projectsTitle')}
             </span>
             <h2 className="text-2xl font-black text-slate-900 font-outfit">
-              Fatih Suriçi Tamamlanan Eserlerimiz
+              {t('home.projectsSubtitle')}
             </h2>
           </div>
 
@@ -267,7 +265,7 @@ export const Home: React.FC<HomeProps> = ({
             onClick={() => setActiveTab('projects')}
             className="text-xs font-bold text-amber-600 hover:text-amber-700 flex items-center gap-1 transition-colors cursor-pointer"
           >
-            <span>Tüm Projeleri Gör ({projects.length})</span>
+            <span>{t('home.viewAll')} ({projects.length})</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -289,7 +287,7 @@ export const Home: React.FC<HomeProps> = ({
                 </div>
                 <div className="absolute top-3 right-3">
                   <span className="px-2.5 py-1 rounded-full text-[10px] font-black bg-blue-600 text-white shadow-md">
-                    ✓ Teslim Edildi
+                    ✓ {t('home.completed')}
                   </span>
                 </div>
               </div>
@@ -312,15 +310,15 @@ export const Home: React.FC<HomeProps> = ({
                     rel="noopener noreferrer"
                     className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-extrabold py-2 px-3 rounded-xl text-xs transition-transform active:scale-95 flex items-center justify-center gap-1.5 shadow-sm"
                   >
-                    <span>Yol Tarifi Al</span>
+                    <span>{t('home.direction')}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                   <button
                     onClick={() => setActiveTab('map')}
                     className="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2 px-3 rounded-xl text-xs transition-colors"
-                    title="Haritada İncele"
+                    title={t('home.map')}
                   >
-                    Harita
+                    {t('home.map')}
                   </button>
                 </div>
               </div>
@@ -343,13 +341,13 @@ export const Home: React.FC<HomeProps> = ({
           <div className="space-y-2 max-w-xl text-center md:text-left">
             <div className="inline-flex items-center gap-1.5 text-amber-400 font-bold text-xs uppercase tracking-wider">
               <Bot className="w-4 h-4" />
-              <span>Yapay Zeka Destekli 6306 Kanun Danışmanı</span>
+              <span>{t('hero.btnAI')}</span>
             </div>
             <h3 className="text-xl md:text-2xl font-black font-outfit">
-              Binanızın Kentsel Dönüşüm Şartlarını Öğrenin
+              {language === 'tr' ? 'Binanızın Kentsel Dönüşüm Şartlarını Öğrenin' : language === 'ar' ? 'تعرف على شروط التحول الحضري لمبناك' : 'Learn the Urban Transformation Conditions of Your Building'}
             </h3>
             <p className="text-xs md:text-sm text-slate-300">
-              %50+1 çoğunluk kararı, hibe ve kredi şartları ile güncel kira yardımları hakkında anında bilgi alın.
+              {language === 'tr' ? '%50+1 çoğunluk kararı, hibe ve kredi şartları ile güncel kira yardımları hakkında anında bilgi alın.' : language === 'ar' ? 'احصل على معلومات فورية حول قرار الأغلبية ٥٠٪+١، وشروط المنح والقروض ومساعدات الإيجار الحالية.' : 'Get instant information about the 50%+1 majority decision, grant and loan conditions, and current rental assistance.'}
             </p>
           </div>
 
@@ -359,14 +357,14 @@ export const Home: React.FC<HomeProps> = ({
               className="bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black px-5 py-3 rounded-xl shadow-lg transition-transform active:scale-95 text-xs flex items-center gap-2 cursor-pointer"
             >
               <Sparkles className="w-4 h-4 text-slate-950" />
-              <span>AI Danışmanı Aç</span>
+              <span>{t('hero.btnAI')}</span>
             </button>
 
             <button
               onClick={() => setActiveTab('contact')}
               className="bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-3 rounded-xl border border-white/20 transition-colors text-xs flex items-center gap-1.5 cursor-pointer"
             >
-              <span>İletişime Geç</span>
+              <span>{t('nav.contact')}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

@@ -69,13 +69,13 @@ export const Projects: React.FC<ProjectsProps> = ({
         <div className="max-w-2xl space-y-3 relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/20 text-amber-300 rounded-full text-xs font-bold uppercase tracking-wider border border-amber-500/30">
             <Building2 className="w-3.5 h-3.5 text-amber-400" />
-            <span>Fatih Suriçi Yapılarımız & Lokasyonları</span>
+            <span>Fatih Yapılarımız & Lokasyonları</span>
           </div>
           <h1 className="text-2xl md:text-4xl font-black font-outfit tracking-tight">
             AB Yapı Proje & Lokasyon Rehberi
           </h1>
           <p className="text-slate-300 text-xs md:text-sm leading-relaxed">
-            Fatih Suriçi bölgesinde inşa ettiğimiz ve teslim ettiğimiz projelerimizin kesin sokak adresleri ve koordinatları.
+            Fatih bölgesinde inşa ettiğimiz ve teslim ettiğimiz projelerimizin kesin sokak adresleri ve koordinatları.
           </p>
         </div>
       </div>

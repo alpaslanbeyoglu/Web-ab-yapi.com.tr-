@@ -158,16 +158,16 @@ export const LiveCompassRadar: React.FC<LiveCompassRadarProps> = ({
   const allDestinations: LocationPoint[] = useMemo(() => {
     const list: LocationPoint[] = [];
 
-    // 1. AB Yapı General Head Office
+    // 1. AB Yapı Office
     list.push({
       id: 'office',
-      name: `${companyInfo.name} Genel Merkez Ofisi`,
+      name: `${companyInfo.name} Cerrahpaşa Ofisi`,
       type: 'office',
       address: companyInfo.address,
       district: companyInfo.district,
       lat: 41.004813,
       lng: 28.933724,
-      status: 'Merkez Ofis',
+      status: 'Ofisimiz',
       image: '/logo.svg',
     });
 
@@ -541,7 +541,7 @@ export const LiveCompassRadar: React.FC<LiveCompassRadarProps> = ({
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <span className="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                          {currentTarget.type === 'office' ? 'GENEL MERKEZ OFİS' : 'TAMAMLANAN PROJE'}
+                          {currentTarget.type === 'office' ? 'AB YAPI OFİSİ' : 'TAMAMLANAN PROJE'}
                         </span>
                         <span className="text-xs text-slate-400 font-medium">
                           {currentTarget.district}
