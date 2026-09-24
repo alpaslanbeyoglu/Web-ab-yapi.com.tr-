@@ -17,6 +17,7 @@ import {
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { LiveCompassRadar } from './components/LiveCompassRadar';
 import { AIConsultantModal } from './components/AIConsultantModal';
 
 import { Home } from './pages/Home';
@@ -178,6 +179,17 @@ export default function App() {
 
       {/* Floating Interactive WhatsApp Widget */}
       <WhatsAppButton whatsappNumber={companyInfo.whatsapp} />
+
+      {/* Real-time Compass & Proximity Radar */}
+      <LiveCompassRadar
+        projects={projects}
+        companyInfo={companyInfo}
+        onSelectProject={(proj) => {
+          setSelectedProject(proj);
+          setActiveTab('projects');
+        }}
+        setActiveTab={setActiveTab}
+      />
 
       {/* AI Kentsel Dönüşüm Consultant Modal */}
       <AIConsultantModal

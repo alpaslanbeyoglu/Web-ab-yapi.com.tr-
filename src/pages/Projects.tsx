@@ -11,7 +11,7 @@ import {
   X,
   MessageSquare,
   History,
-  Search,
+  Search
 } from 'lucide-react';
 
 interface ProjectsProps {

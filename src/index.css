@@ -41,3 +41,13 @@
 .animate-float-slow {
   animation: floatSlow 4s ease-in-out infinite;
 }
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
+
