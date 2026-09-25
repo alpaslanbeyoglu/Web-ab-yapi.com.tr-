@@ -131,7 +131,7 @@ export const LiveCompassRadar: React.FC<LiveCompassRadarProps> = ({
 }) => {
   // Modal & View states
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isMinimized, setIsMinimized] = useState<boolean>(false);
+  const [isMinimized, setIsMinimized] = useState<boolean>(true);
   const [selectedTargetId, setSelectedTargetId] = useState<string>('auto');
 
   // Automatic GPS Location State
