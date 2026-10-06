@@ -92,7 +92,7 @@
         font-family="'Cabinet Grotesk', 'Outfit', 'Montserrat', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
         font-size="56"
         font-weight="900"
-        fill="#1C2E3B"
+        fill="#FFFFFF"
         letter-spacing="0.06em"
         text-anchor="middle">
     AB YAPI
@@ -101,7 +101,7 @@
         font-family="'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif"
         font-size="12.5"
         font-weight="800"
-        fill="#2C3E4C"
+        fill="#5EEAD4"
         letter-spacing="0.22em"
         text-anchor="middle">
     GÜVENE YÜKSELEN YAPILAR

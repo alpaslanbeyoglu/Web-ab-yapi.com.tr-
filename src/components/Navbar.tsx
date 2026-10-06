@@ -94,11 +94,11 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Main Top Bar */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-2 md:py-2.5 flex items-center justify-between gap-4">
         {/* Zone 1: Brand Wordmark */}
         <button
           onClick={() => handleNavClick('home')}
-          className="text-left focus:outline-hidden"
+          className="text-left focus:outline-hidden shrink-0 cursor-pointer"
         >
           <Logo variant="full" size="md" logoUrl={logoUrl} />
         </button>

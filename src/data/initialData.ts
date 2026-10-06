@@ -14,7 +14,7 @@ export const INITIAL_COMPANY_INFO: CompanyInfo = {
   city: 'İstanbul',
   workingHours: 'Pazartesi - Cumartesi: 08:30 - 18:30',
   mapEmbedUrl: 'https://maps.google.com/maps?q=41.004813,28.933724&t=&z=17&ie=UTF8&iwloc=&output=embed',
-  logoUrl: '/logo.svg',
+  logoUrl: '/logo.png',
 };
 
 export const INITIAL_STATS: IstanbulConstructionStats = {

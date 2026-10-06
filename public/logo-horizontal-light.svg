@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 308" width="300" height="308">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 114" width="450" height="114">
   
   <defs>
     <!-- Left Pillar: Charcoal / Deep Slate -->
@@ -56,7 +56,8 @@
     </linearGradient>
   </defs>
 
-  <g transform="translate(52, 0)">
+  <!-- Tight Emblem on Left -->
+  <g transform="translate(0, 2) scale(0.534)">
     
   <g id="emblem-towers">
     <!-- 1. LEFT TOWER (Charcoal / Slate) -->
@@ -88,22 +89,26 @@
   </g>
 
   </g>
-  <text x="150" y="266"
-        font-family="'Cabinet Grotesk', 'Outfit', 'Montserrat', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
-        font-size="56"
-        font-weight="900"
-        fill="#1C2E3B"
-        letter-spacing="0.06em"
-        text-anchor="middle">
-    AB YAPI
-  </text>
-  <text x="150" y="296"
-        font-family="'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif"
-        font-size="12.5"
-        font-weight="800"
-        fill="#2C3E4C"
-        letter-spacing="0.22em"
-        text-anchor="middle">
-    GÜVENE YÜKSELEN YAPILAR
-  </text>
+
+  <!-- Typography on Right -->
+  <g transform="translate(120, 0)">
+    <text x="0" y="70"
+          font-family="'Cabinet Grotesk', 'Outfit', 'Montserrat', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
+          font-size="68"
+          font-weight="900"
+          fill="#FFFFFF"
+          letter-spacing="0.04em"
+          text-anchor="start">
+      AB YAPI
+    </text>
+    <text x="2" y="102"
+          font-family="'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif"
+          font-size="15"
+          font-weight="800"
+          fill="#5EEAD4"
+          letter-spacing="0.22em"
+          text-anchor="start">
+      GÜVENE YÜKSELEN YAPILAR
+    </text>
+  </g>
 </svg>

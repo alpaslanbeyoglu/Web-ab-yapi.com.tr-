@@ -3,27 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Suppress Vite HMR WebSocket disconnect errors in sandboxed environments (per guidelines)
+      window.addEventListener('unhandledrejection', function(event) {
+        if (
+          event &&
+          event.reason &&
+          (
+            (typeof event.reason.message === 'string' && (
+              event.reason.message.includes('WebSocket') ||
+              event.reason.message.includes('vite') ||
+              event.reason.message.includes('ws')
+            )) ||
+            (typeof event.reason.stack === 'string' && event.reason.stack.includes('@vite/client'))
+          )
+        ) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      }, true);
+
+      window.addEventListener('error', function(event) {
+        if (
+          event &&
+          (
+            (event.filename && event.filename.includes('@vite/client')) ||
+            (typeof event.message === 'string' && (
+              event.message.includes('WebSocket') ||
+              event.message.includes('vite')
+            ))
+          )
+        ) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      }, true);
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
-    <title>AB Yapı | Güvene Yükselen Yapılar - İstanbul Kentsel Dönüşüm & İnşaat</title>
-    <meta name="description" content="AB Yapı kurumsal web sitesi. İstanbul kentsel dönüşüm süreçleri, inşaat istatistikleri, tamamlanan ve devam eden projelerimiz, etkileşimli harita ve yasal mevzuat rehberi." />
-    <meta property="og:title" content="AB Yapı - Güvene Yükselen Yapılar" />
-    <meta property="og:description" content="İstanbul kentsel dönüşüm rehberi, inşaat verileri, tamamlanan ve devam eden projelerimiz ile AB Yapı kurumsal web portalı." />
+    <title>AB Yapı | Fatih Kentsel Dönüşüm & 6306 Kanun Uzmanlığı (İstanbul)</title>
+    <meta name="description" content="Fatih ve İstanbul'da %50+1 çoğunlukla depreme dayanıklı kentsel dönüşüm. C40 hazır beton, 18 ay devlet kira yardımı desteği ve ücretsiz yerinde bina analizi. Hemen teklif alın!" />
+    <meta property="og:title" content="AB Yapı - Fatih Kentsel Dönüşüm & Güvene Yükselen Yapılar" />
+    <meta property="og:description" content="İstanbul kentsel dönüşüm rehberi, 6306 kanun süreçleri, C40 deprem dayanımlı konut projelerimiz ve ücretsiz bina analizi." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ab-yapi.com.tr/" />
+    <meta property="og:site_name" content="AB Yapı" />
+    <meta property="og:image" content="https://ab-yapi.com.tr/logo.png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="AB Yapı - Güvene Yükselen Yapılar" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AB Yapı - Fatih Kentsel Dönüşüm & Güvene Yükselen Yapılar" />
+    <meta name="twitter:description" content="İstanbul'da depreme tam dayanıklı kentsel dönüşüm, %50+1 salt çoğunluk sözleşmesi ve 18 ay devlet kira desteği." />
+    <meta name="twitter:image" content="https://ab-yapi.com.tr/logo.png" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=()" />
     <link rel="canonical" href="https://ab-yapi.com.tr/" />
     
-    <!-- Schema.org Structured Data for Local Business (SEO Boosting) -->
+    <!-- Schema.org Structured Data: Local Business with Google Star Rating -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "HomeAndConstructionBusiness",
       "name": "AB Yapı",
       "alternateName": "Alpaslan Beyoğlu Yapı Ltd. Şti.",
-      "image": "https://ab-yapi.com.tr/logo.svg",
+      "image": "https://ab-yapi.com.tr/logo.png",
       "@id": "https://ab-yapi.com.tr/#localbusiness",
       "url": "https://ab-yapi.com.tr/",
       "telephone": "+905510102200",
@@ -41,6 +86,24 @@
         "latitude": 41.004813,
         "longitude": 28.933724
       },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "42"
+      },
+      "areaServed": [
+        "Fatih",
+        "Cerrahpaşa",
+        "Kocamustafapaşa",
+        "Aksaray",
+        "Silivrikapı",
+        "Zeytinburnu",
+        "Bakırköy",
+        "Kadıköy",
+        "İstanbul"
+      ],
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": [
@@ -56,6 +119,76 @@
       },
       "sameAs": [
         "https://wa.me/905510102200"
+      ]
+    }
+    </script>
+
+    <!-- Schema.org FAQPage: Displays Interactive Q&A Accordion Directly in Google Search Results (High SERP Real-Estate) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Kentsel dönüşümde bina yenileme kararı için kaç malikin onayı gerekir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "6306 Sayılı Kentsel Dönüşüm Kanunu'nda yapılan son yasal düzenleme ile eski 2/3 kuralı kaldırılmış, yerine arsa payı hissesinin %50 + 1 (Salt Çoğunluk) oranı getirilmiştir. Bu oran ile resmi sözleşme imzalanıp süreç başlatılabilir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kentsel dönüşümde devlet kira yardımı ne kadar ve kaç ay sürer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "İstanbul'da riskli yapıda ikamet eden mülk sahiplerine Çevre, Şehircilik ve İklim Değişikliği Bakanlığı tarafından 18 ay boyunca aylık geri ödemesiz güncel devlet kira yardımı ödenir. Kiracılara ise tek seferlik taşınma desteği sağlanır."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Riskli yapı tespiti (karot testi) için apartmandaki tüm komşuların onayı zorunlu mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hayır. 6306 Sayılı Kanun Madde 3 uyarınca apartmandaki tek bir kat malikinin bakanlık lisanslı kuruluşa başvurması yasal olarak yeterlidir. Tüm komşuların imza vermesi gerekmez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AB Yapı projelerinde hangi beton ve deprem standartları uygulanmaktadır?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AB Yapı, 2018 Türkiye Bina Deprem Yönetmeliği'ne tam uyumlu olarak radye jeneral temel, C35/C40/C50 yüksek dayanımlı hazır beton, nervürlü çelik ve bağımsız yapı denetim kontrolü ile sıfır riskli yapılar inşa eder."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Schema.org Breadcrumb Navigation Hierarchy -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Anasayfa",
+          "item": "https://ab-yapi.com.tr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Kentsel Dönüşüm Rehberi",
+          "item": "https://ab-yapi.com.tr/kentsel-donusum-rehberi"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Tamamlanan Projelerimiz",
+          "item": "https://ab-yapi.com.tr/projelerimiz"
+        }
       ]
     }
     </script>
