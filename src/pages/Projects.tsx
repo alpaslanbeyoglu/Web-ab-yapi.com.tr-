@@ -82,6 +82,27 @@ export const Projects: React.FC<ProjectsProps> = ({
 
       {/* Filter Control Bar */}
       <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+        {/* Featured Projects Highlight (Moved from Home Page) */}
+        <div className="w-full border-b border-slate-100 pb-6 mb-6">
+          <span className="text-[11px] font-black uppercase text-amber-600 tracking-wider">
+            Öne Çıkanlar
+          </span>
+          <h2 className="text-2xl font-black text-slate-900 font-outfit">
+            Fatih'te Tamamlanan Eserlerimiz
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            {projects.slice(0, 3).map((proj) => (
+              <div key={proj.id} className="bg-slate-50 rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all">
+                <img src={proj.featuredImage} alt={proj.title} className="w-full h-40 object-cover" />
+                <div className="p-4">
+                  <h3 className="font-extrabold text-slate-900 text-sm">{proj.title}</h3>
+                  <p className="text-xs text-slate-500 mt-1">{proj.neighborhood}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Status Filter */}
         <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-bold">
           <button

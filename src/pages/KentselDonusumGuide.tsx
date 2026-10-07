@@ -4,6 +4,7 @@ import { KentselDonusumCalculator } from '../components/KentselDonusumCalculator
 import { ComfortPackageOptions } from '../components/ComfortPackageOptions';
 import { KentselDonusumFAQ } from '../components/KentselDonusumFAQ';
 import { KentselDonusumTimeline } from '../components/KentselDonusumTimeline';
+import { TransformationTimelineCalculator } from '../components/TransformationTimelineCalculator';
 import { FileText, Scale, CheckCircle2, Bot, HelpCircle, ArrowRight, BookOpen, ShieldAlert, Sparkles } from 'lucide-react';
 
 interface GuideProps {
@@ -55,6 +56,9 @@ export const KentselDonusumGuide: React.FC<GuideProps> = ({
 
       {/* Visual Hukuki & Teknik Kentsel Dönüşüm Zaman Çizelgesi */}
       <KentselDonusumTimeline whatsappNumber={whatsappNumber} />
+
+      {/* Transformation Timeline Calculator */}
+      <TransformationTimelineCalculator />
 
       {/* Guide Articles Grid */}
       <div className="space-y-6">
