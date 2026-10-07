@@ -188,59 +188,59 @@ export const Home: React.FC<HomeProps> = ({
 
       {/* 2. COMPACT OFFICIAL STATS & BENEFITS BAR (4 Sleek Cards) */}
       <section className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
           
-          <div className="bg-white rounded-2xl p-4 md:p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-600 font-black shrink-0">
+          <div className="bg-white rounded-xl p-3 md:p-4 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-center gap-2">
+            <div className="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-600 font-black shrink-0">
               ₺
             </div>
             <div>
-              <div className="text-lg md:text-xl font-black text-slate-900 font-outfit">
+              <div className="text-sm md:text-md font-black text-slate-900 font-outfit">
                 ₺1.850.000
               </div>
-              <p className="text-[11px] font-semibold text-slate-500 leading-tight">
+              <p className="text-[10px] font-semibold text-slate-500 leading-tight">
                 {t('stats.halfUs')}
               </p>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 md:p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-600 shrink-0">
-              <Building2 className="w-5 h-5" />
+          <div className="bg-white rounded-xl p-3 md:p-4 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-center gap-2">
+            <div className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-600 shrink-0">
+              <Building2 className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-lg md:text-xl font-black text-slate-900 font-outfit">
+              <div className="text-sm md:text-md font-black text-slate-900 font-outfit">
                 21+ Proje
               </div>
-              <p className="text-[11px] font-semibold text-slate-500 leading-tight">
+              <p className="text-[10px] font-semibold text-slate-500 leading-tight">
                 {t('stats.totalProjects')}
               </p>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 md:p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 shrink-0">
-              <TrendingUp className="w-5 h-5" />
+          <div className="bg-white rounded-xl p-3 md:p-4 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-center gap-2">
+            <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 shrink-0">
+              <TrendingUp className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-lg md:text-xl font-black text-slate-900 font-outfit">
+              <div className="text-sm md:text-md font-black text-slate-900 font-outfit">
                 ₺7.000 / Ay
               </div>
-              <p className="text-[11px] font-semibold text-slate-500 leading-tight">
+              <p className="text-[10px] font-semibold text-slate-500 leading-tight">
                 {t('stats.rentAssistance')}
               </p>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 md:p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center shrink-0 shadow-inner">
-              <ShieldCheck className="w-5 h-5" />
+          <div className="bg-white rounded-xl p-3 md:p-4 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-center gap-2">
+            <div className="w-9 h-9 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center shrink-0 shadow-inner">
+              <ShieldCheck className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-lg md:text-xl font-black text-slate-900 font-outfit">
+              <div className="text-sm md:text-md font-black text-slate-900 font-outfit">
                 {t('stats.safetyTitle')}
               </div>
-              <p className="text-[11px] font-semibold text-slate-500 leading-tight">
+              <p className="text-[10px] font-semibold text-slate-500 leading-tight">
                 {t('stats.safety')}
               </p>
             </div>

@@ -5,7 +5,7 @@ import { ComfortPackageOptions } from '../components/ComfortPackageOptions';
 import { KentselDonusumFAQ } from '../components/KentselDonusumFAQ';
 import { KentselDonusumTimeline } from '../components/KentselDonusumTimeline';
 import { TransformationTimelineCalculator } from '../components/TransformationTimelineCalculator';
-import { FileText, Scale, CheckCircle2, Bot, HelpCircle, ArrowRight, BookOpen, ShieldAlert, Sparkles } from 'lucide-react';
+import { FileText, Scale, CheckCircle2, Bot, HelpCircle, ArrowRight, BookOpen, ShieldAlert, Sparkles, Banknote } from 'lucide-react';
 
 interface GuideProps {
   guides: GuideArticle[];
@@ -59,6 +59,37 @@ export const KentselDonusumGuide: React.FC<GuideProps> = ({
 
       {/* Transformation Timeline Calculator */}
       <TransformationTimelineCalculator />
+
+      {/* Kentsel Dönüşüm Kredisi Bilgilendirme */}
+      <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 space-y-6">
+        <div className="flex items-center gap-4">
+          <div className="bg-teal-100 p-3 rounded-2xl">
+            <Banknote className="w-8 h-8 text-teal-700" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-extrabold text-slate-900 font-outfit">Kentsel Dönüşüm Kredisi Desteği</h2>
+            <p className="text-slate-600 text-sm">Devlet destekli finansman imkanları hakkında temel bilgiler.</p>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
+          <div className="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
+            <h4 className="font-bold text-slate-900">Ödeme Şartları</h4>
+            <ul className="list-disc list-inside space-y-1">
+              <li>Faiz destekli geri ödeme planı.</li>
+              <li>Düşük faiz oranlı finansman.</li>
+              <li>Maksimum kredi üst limiti (yıllık belirlenir).</li>
+            </ul>
+          </div>
+          <div className="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
+            <h4 className="font-bold text-slate-900">Vade ve Esneklik</h4>
+            <ul className="list-disc list-inside space-y-1">
+              <li>Maksimum 10 yıl vade seçeneği.</li>
+              <li>İlk 12-24 ay ödemesiz dönem (opsiyonel).</li>
+              <li>Gelire göre esnek taksitlendirme.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
       {/* Guide Articles Grid */}
       <div className="space-y-6">
