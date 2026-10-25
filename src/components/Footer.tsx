@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Logo } from './Logo';
 import { CompanyInfo } from '../types';
 import { useLanguage } from '../context/LanguageContext';
-import { MapPin, Phone, Mail, Clock, MessageSquare, ShieldCheck, X, FileText } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, MessageSquare, ShieldCheck, X, FileText, Lock } from 'lucide-react';
 
 interface FooterProps {
   companyInfo: CompanyInfo;
@@ -307,7 +307,7 @@ Tarayıcı ayarlarınızdan çerez tercihlerinizi dilediğiniz zaman değiştire
               © {new Date().getFullYear()} {companyInfo.name} ({companyInfo.domain}). {activeTrans.allRights}
             </div>
             
-            {/* Interactive Functional Policy Buttons */}
+            {/* Interactive Functional Policy Buttons & Admin Entrance */}
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs font-semibold">
               <button
                 onClick={() => setActiveModal('privacy')}
@@ -326,6 +326,17 @@ Tarayıcı ayarlarınızdan çerez tercihlerinizi dilediğiniz zaman değiştire
                 className="text-slate-400 hover:text-amber-400 transition-colors cursor-pointer py-1 px-1.5 rounded"
               >
                 {activeTrans.cookiesTitle}
+              </button>
+              <button
+                onClick={() => {
+                  setActiveTab('admin');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="text-slate-400 hover:text-amber-400 transition-colors cursor-pointer py-1 px-2 rounded-lg flex items-center gap-1.5 bg-slate-900 border border-slate-800 hover:border-amber-400/50"
+                title="Yönetici Paneli Girişi"
+              >
+                <Lock className="w-3 h-3 text-amber-400" />
+                <span>Yönetici Paneli</span>
               </button>
             </div>
           </div>

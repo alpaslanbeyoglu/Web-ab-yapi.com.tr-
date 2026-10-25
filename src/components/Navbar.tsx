@@ -52,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <a
               href={`tel:${phoneNumber}`}
               onClick={() => trackPhoneClick('navbar_top_phone')}

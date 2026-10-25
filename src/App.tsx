@@ -7,12 +7,18 @@ import {
   CustomerInquiry,
 } from './types';
 import {
-  INITIAL_COMPANY_INFO,
-  INITIAL_STATS,
-  INITIAL_PROJECTS,
-  INITIAL_GUIDES,
-  INITIAL_INQUIRIES,
-} from './data/initialData';
+  getProjects,
+  saveProjects,
+  getStats,
+  saveStats,
+  getGuides,
+  saveGuides,
+  getInquiries,
+  saveInquiries,
+  getCompanyInfo,
+  saveCompanyInfo,
+  checkIsAdminAuthenticated,
+} from './services/adminStorage';
 
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -27,6 +33,7 @@ import { MapView } from './pages/MapView';
 import { KentselDonusumGuide } from './pages/KentselDonusumGuide';
 import { AboutUs } from './pages/AboutUs';
 import { Contact } from './pages/Contact';
+import { AdminPage } from './pages/AdminPage';
 import { trackPageView, trackInquirySubmit } from './utils/analytics';
 
 const TAB_METADATA: Record<string, { path: string; title: string }> = {
@@ -37,10 +44,11 @@ const TAB_METADATA: Record<string, { path: string; title: string }> = {
   map: { path: '/proje-haritasi', title: 'AB Yapı | İnteraktif Proje Haritası' },
   about: { path: '/hakkimizda', title: 'AB Yapı | Hakkımızda & Vizyonumuz' },
   contact: { path: '/iletisim', title: 'AB Yapı | İletişim & Teklif Talebi' },
+  admin: { path: '/admin', title: 'AB Yapı | Yönetici Paneli & İçerik Yönetimi' },
 };
 
 export default function App() {
-  const validTabs = ['home', 'stats', 'projects', 'map', 'guide', 'about', 'contact'];
+  const validTabs = ['home', 'stats', 'projects', 'map', 'guide', 'about', 'contact', 'admin'];
 
   const [activeTab, setActiveTab] = useState<string>(() => {
     try {
@@ -61,14 +69,36 @@ export default function App() {
   const [isAIConsultantOpen, setIsAIConsultantOpen] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // Security cleanup: remove any obsolete admin session data
+  // Admin authentication state
+  const [isAdminAuth, setIsAdminAuth] = useState<boolean>(() => checkIsAdminAuthenticated());
+
+  // Dynamic Persistent Data States with localStorage Sync
+  const [companyInfo, setCompanyInfo] = useState<CompanyInfo>(() => getCompanyInfo());
+  const [stats, setStats] = useState<IstanbulConstructionStats>(() => getStats());
+  const [projects, setProjects] = useState<Project[]>(() => getProjects());
+  const [guides, setGuides] = useState<GuideArticle[]>(() => getGuides());
+  const [inquiries, setInquiries] = useState<CustomerInquiry[]>(() => getInquiries());
+
+  // Sync state changes with localStorage
   useEffect(() => {
-    try {
-      localStorage.removeItem('abyapi_admin_user');
-    } catch {
-      // ignore
-    }
-  }, []);
+    saveCompanyInfo(companyInfo);
+  }, [companyInfo]);
+
+  useEffect(() => {
+    saveStats(stats);
+  }, [stats]);
+
+  useEffect(() => {
+    saveProjects(projects);
+  }, [projects]);
+
+  useEffect(() => {
+    saveGuides(guides);
+  }, [guides]);
+
+  useEffect(() => {
+    saveInquiries(inquiries);
+  }, [inquiries]);
 
   // Google Analytics 4 page view tracking on tab/navigation switch
   useEffect(() => {
@@ -78,32 +108,6 @@ export default function App() {
     };
     trackPageView(meta.path, meta.title);
   }, [activeTab]);
-
-  // Company and project data states
-  const [companyInfo] = useState<CompanyInfo>(INITIAL_COMPANY_INFO);
-  const [stats] = useState<IstanbulConstructionStats>(INITIAL_STATS);
-  const [projects] = useState<Project[]>(INITIAL_PROJECTS);
-  const [guides] = useState<GuideArticle[]>(INITIAL_GUIDES);
-  const [inquiries, setInquiries] = useState<CustomerInquiry[]>(() => {
-    try {
-      const saved = localStorage.getItem('abyapi_inquiries');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        return Array.isArray(parsed) ? parsed : INITIAL_INQUIRIES;
-      }
-    } catch {
-      // fallback
-    }
-    return INITIAL_INQUIRIES;
-  });
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('abyapi_inquiries', JSON.stringify(inquiries));
-    } catch {
-      // ignore
-    }
-  }, [inquiries]);
 
   // Handle new customer inquiry from contact form or calculator
   const handleAddInquiry = (
@@ -133,7 +137,23 @@ export default function App() {
 
       {/* Main Page Router View */}
       <main className="flex-1">
-        {activeTab === 'stats' ? (
+        {activeTab === 'admin' ? (
+          <AdminPage
+            projects={projects}
+            setProjects={setProjects}
+            stats={stats}
+            setStats={setStats}
+            guides={guides}
+            setGuides={setGuides}
+            inquiries={inquiries}
+            setInquiries={setInquiries}
+            companyInfo={companyInfo}
+            setCompanyInfo={setCompanyInfo}
+            isAdminAuth={isAdminAuth}
+            setIsAdminAuth={setIsAdminAuth}
+            setActiveTab={setActiveTab}
+          />
+        ) : activeTab === 'stats' ? (
           <Statistics
             stats={stats}
             setActiveTab={setActiveTab}
