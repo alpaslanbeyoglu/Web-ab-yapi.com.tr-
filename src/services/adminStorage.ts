@@ -119,7 +119,12 @@ export function getCompanyInfo(): CompanyInfo {
     const raw = localStorage.getItem(KEYS.COMPANY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === 'object' && parsed.name) return parsed;
+      if (parsed && typeof parsed === 'object' && parsed.name) {
+        return {
+          ...INITIAL_COMPANY_INFO,
+          ...parsed,
+        };
+      }
     }
   } catch (err) {
     console.error('Error reading company info from localStorage:', err);

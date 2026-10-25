@@ -40,8 +40,12 @@ import {
   Sliders,
   Check,
   Layers,
+  Upload,
+  Image as ImageIcon,
+  RotateCcw,
 } from 'lucide-react';
 import { getVectorBuildingImage } from '../utils/vectorImage';
+import { Logo } from '../components/Logo';
 
 interface AdminPageProps {
   projects: Project[];
@@ -393,12 +397,42 @@ export const AdminPage: React.FC<AdminPageProps> = ({
   };
 
   // ---------------------------------------------------------------------------
-  // COMPANY INFO HANDLER
+  // COMPANY INFO & LOGO HANDLER
   // ---------------------------------------------------------------------------
+  const handleLogoFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      showToast('Lütfen geçerli bir görsel dosyası (PNG, JPG, SVG, WebP vb.) seçiniz.');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('Görsel boyutu 5MB\'dan küçük olmalıdır.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const result = event.target?.result as string;
+      if (result) {
+        setCompanyForm((prev) => ({ ...prev, logoUrl: result }));
+        showToast('Firma logosu yüklendi! "Firma Bilgilerini Kaydet" butonuna basarak kaydediniz.');
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleResetLogo = () => {
+    setCompanyForm((prev) => ({ ...prev, logoUrl: '/logo.png' }));
+    showToast('Firma logosu varsayılana sıfırlandı.');
+  };
+
   const handleSaveCompany = (e: React.FormEvent) => {
     e.preventDefault();
     setCompanyInfo(companyForm);
-    showToast('Firma ve iletişim bilgileri güncellendi.');
+    showToast('Firma ve iletişim bilgileri başarıyla güncellendi ve site genelinde uygulandı.');
   };
 
   // ===========================================================================
@@ -1406,11 +1440,107 @@ export const AdminPage: React.FC<AdminPageProps> = ({
               </div>
               <button
                 type="submit"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm transition-all flex items-center gap-1.5 cursor-pointer"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm transition-all flex items-center gap-1.5 cursor-pointer shadow-md"
               >
                 <Save className="w-4 h-4" />
                 <span>Firma Bilgilerini Kaydet</span>
               </button>
+            </div>
+
+            {/* Logo Customization Card */}
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+                <div className="flex items-center gap-2">
+                  <ImageIcon className="w-5 h-5 text-amber-600" />
+                  <h4 className="font-extrabold text-sm text-slate-900">Firma Logosu Yönetimi & Özelleştirme</h4>
+                </div>
+                <div className="flex items-center gap-2">
+                  {companyForm.logoUrl && companyForm.logoUrl !== '/logo.png' && (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full border border-emerald-200">
+                      <Check className="w-3.5 h-3.5" /> Özel Logo Aktif
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={handleResetLogo}
+                    className="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs rounded-xl flex items-center gap-1 transition-colors cursor-pointer"
+                    title="Varsayılan orijinal logoya geri dön"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>Varsayılana Sıfırla</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                {/* Left: Live Preview */}
+                <div className="md:col-span-5 space-y-2">
+                  <label className="block text-xs font-bold text-slate-700">Canlı Logo Önizlemesi</label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {/* Light background preview */}
+                    <div className="p-3 bg-white border border-slate-200 rounded-xl flex flex-col items-center justify-center min-h-[90px] text-center shadow-xs">
+                      <span className="text-[10px] text-slate-400 font-bold mb-1.5">Açık Tema (Header)</span>
+                      <Logo variant="full" size="sm" logoUrl={companyForm.logoUrl} />
+                    </div>
+                    {/* Dark background preview */}
+                    <div className="p-3 bg-slate-900 border border-slate-800 rounded-xl flex flex-col items-center justify-center min-h-[90px] text-center shadow-xs">
+                      <span className="text-[10px] text-slate-400 font-bold mb-1.5">Koyu Tema (Footer)</span>
+                      <Logo variant="light" size="sm" logoUrl={companyForm.logoUrl} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Upload controls */}
+                <div className="md:col-span-7 space-y-4">
+                  {/* File Upload Button */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                      Cihazınızdan Logo Görseli Yükleyin (PNG, JPG, SVG, WebP)
+                    </label>
+                    <div className="flex items-center gap-3">
+                      <label className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs rounded-xl cursor-pointer transition-all shadow-sm">
+                        <Upload className="w-4 h-4" />
+                        <span>Bilgisayardan veya Telefondan Logo Seç</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleLogoFileUpload}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-1">
+                      * Yüklediğiniz logo anında kaydedilip sitenizin üst ve alt menülerinde gösterilir. Şeffaf PNG önerilir.
+                    </p>
+                  </div>
+
+                  {/* Or Direct URL Input */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                      Veya Görsel Bağlantı Adresi (URL)
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={companyForm.logoUrl || ''}
+                        onChange={(e) => setCompanyForm({ ...companyForm, logoUrl: e.target.value })}
+                        placeholder="Örn: https://domain.com/logo.png veya data:image/png;base64,..."
+                        className="w-full p-2.5 pr-8 bg-white border border-slate-300 rounded-xl text-xs font-mono"
+                      />
+                      {companyForm.logoUrl && (
+                        <button
+                          type="button"
+                          onClick={() => setCompanyForm({ ...companyForm, logoUrl: '' })}
+                          className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
+                          title="Temizle"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">

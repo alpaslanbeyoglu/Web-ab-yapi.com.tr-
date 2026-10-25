@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface LogoProps {
   variant?: 'full' | 'icon' | 'light' | 'vertical';
@@ -22,6 +22,10 @@ export const Logo: React.FC<LogoProps> = ({
   logoUrl,
 }) => {
   const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    setImageError(false);
+  }, [logoUrl]);
 
   // Enlarged size classes (as requested: "Logoyu daha da büyüt")
   const sizeClasses = {
