@@ -48,18 +48,46 @@ const TAB_METADATA: Record<string, { path: string; title: string }> = {
 };
 
 export default function App() {
-  const validTabs = ['home', 'stats', 'projects', 'map', 'guide', 'about', 'contact', 'admin'];
-
   const [activeTab, setActiveTab] = useState<string>(() => {
     try {
+      const pathToTabMap: Record<string, string> = {
+        '/': 'home',
+        '/projelerimiz': 'projects',
+        '/kentsel-donusum-rehberi': 'guide',
+        '/istatistikler': 'stats',
+        '/proje-haritasi': 'map',
+        '/hakkimizda': 'about',
+        '/iletisim': 'contact',
+        '/admin': 'admin',
+        'projelerimiz': 'projects',
+        'kentsel-donusum-rehberi': 'guide',
+        'istatistikler': 'stats',
+        'proje-haritasi': 'map',
+        'hakkimizda': 'about',
+        'iletisim': 'contact',
+        'admin': 'admin',
+        'home': 'home',
+        'stats': 'stats',
+        'projects': 'projects',
+        'map': 'map',
+        'guide': 'guide',
+        'about': 'about',
+        'contact': 'contact',
+      };
+
       const params = new URLSearchParams(window.location.search);
       const p = params.get('p');
       if (p) {
+        if (pathToTabMap[p]) return pathToTabMap[p];
         const cleaned = p.replace('/', '');
-        if (validTabs.includes(cleaned)) return cleaned;
+        if (pathToTabMap[cleaned]) return pathToTabMap[cleaned];
+      }
+      const pathname = window.location.pathname;
+      if (pathname && pathToTabMap[pathname]) {
+        return pathToTabMap[pathname];
       }
       const hash = window.location.hash.replace('#', '');
-      if (validTabs.includes(hash)) return hash;
+      if (hash && pathToTabMap[hash]) return pathToTabMap[hash];
     } catch {
       // ignore
     }
@@ -100,13 +128,19 @@ export default function App() {
     saveInquiries(inquiries);
   }, [inquiries]);
 
-  // Google Analytics 4 page view tracking on tab/navigation switch
+  // Google Analytics 4 page view tracking & URL history sync
   useEffect(() => {
     const meta = TAB_METADATA[activeTab] || {
       path: `/${activeTab}`,
       title: `AB Yapı - ${activeTab}`,
     };
     trackPageView(meta.path, meta.title);
+    try {
+      window.history.pushState(null, meta.title, meta.path);
+      document.title = meta.title;
+    } catch {
+      // ignore
+    }
   }, [activeTab]);
 
   // Handle new customer inquiry from contact form or calculator

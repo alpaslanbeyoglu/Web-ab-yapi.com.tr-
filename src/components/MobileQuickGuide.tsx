@@ -134,7 +134,7 @@ export const MobileQuickGuide: React.FC<MobileQuickGuideProps> = ({
         <div className="bg-slate-950 p-4 rounded-2xl border border-teal-500/30 space-y-4 animate-fadeIn">
           <div className="flex items-center justify-between border-b border-slate-800 pb-2">
             <span className="text-xs font-extrabold text-teal-400 uppercase tracking-wide">
-              Maliyet & Cebinizden Çıkacak Miktar
+              Maliyet & Net Özkaynak İhtiyacı
             </span>
             <span className="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded-md font-bold">
               Yarısı Bizden Düşülmüş
@@ -189,7 +189,7 @@ export const MobileQuickGuide: React.FC<MobileQuickGuideProps> = ({
                 <span className="font-bold text-emerald-400">- ₺1.750.000</span>
               </div>
               <div className="pt-2 border-t border-slate-800 flex justify-between items-center">
-                <span className="font-extrabold text-amber-400 text-xs">Cebinizden Çıkacak Miktar:</span>
+                <span className="font-extrabold text-amber-400 text-xs">Tahmini Net Özkaynak / Ödenecek Tutar:</span>
                 <span className="font-black text-amber-400 text-base">
                   ₺{netOutOfPocket.toLocaleString('tr-TR')}
                 </span>
@@ -278,7 +278,7 @@ export const MobileQuickGuide: React.FC<MobileQuickGuideProps> = ({
 
           <div className="p-2.5 bg-amber-500/10 rounded-xl border border-amber-500/20 text-[11px] text-amber-200 space-y-1">
             <strong className="block text-white">🤝 Ödeme Kolaylığı:</strong>
-            Cebinizden çıkacak fark ödemelerinde cazip vadeler sunuyoruz. (Vadeler sözleşmede belirlenir.)
+            Özkaynak / fark ödemelerinde cazip vadeler ve ödeme kolaylıkları sunuyoruz. (Vadeler sözleşmede belirlenir.)
           </div>
 
           <button

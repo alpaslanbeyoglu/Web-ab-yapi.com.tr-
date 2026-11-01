@@ -510,7 +510,7 @@ Sağlanan Başlıca Haklar:
     content: `1999 Marmara Depremi öncesinde inşa edilen binalarda genellikle düz demir kullanımı, hazır beton teknolojisinin olmaması ve yetersiz donatı detayları en büyük risk faktörleridir.
 
 Bir binanın riskli sayılabileceği başlıca göstergeler:
-- Beton dayanımının C16 ve altında çıkması (Modern yapılarda minimum C30/C40 zorunludur).
+- Beton dayanımının C16 ve altında çıkması (Yeni yapılarda onaylı proje statik hesabına ve zemin etüdüne göre C30, C35, C40 vb. yüksek dayanımlı beton sınıfları uygulanır).
 - Bodrum kat kolonlarında nem ve paslanma (korozyon) nedeniyle demir kesit kaybı.
 - Binada oturma veya belirgin eğilme.
 - Zemin sıvılaşma riskinin yüksek olduğu dolgu alanlar.

@@ -102,7 +102,7 @@ export const KentselDonusumCalculator: React.FC<CalculatorProps> = ({
         badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
         icon: CheckCircle2,
         summary:
-          'Türkiye Bina Deprem Yönetmeliği (TBDY 2018) standartlarına, C30/C40 hazır beton sınıflarına ve radye temellere tabi yüksek dayanımlı yapılardır.',
+          'Türkiye Bina Deprem Yönetmeliği (TBDY 2018) standartlarına, onaylı proje statik hesabına ve zemin etüdüne uygun hazır beton sınıflarına tabi yapılardır.',
       };
     }
   };
@@ -233,16 +233,30 @@ export const KentselDonusumCalculator: React.FC<CalculatorProps> = ({
 
               <div className="space-y-2 text-[11px]">
                 <div className="flex justify-between p-2 rounded-lg bg-slate-950 border border-slate-800">
-                  <span>İnşaat Maliyeti:</span>
+                  <span className="text-slate-300">İnşaat Maliyeti:</span>
                   <span className="font-bold">₺{totalConstructionCost.toLocaleString('tr-TR')}</span>
                 </div>
-                <div className="flex justify-between p-2 rounded-lg bg-slate-950 border border-slate-800">
-                  <span>Devlet Desteği (Hibe+Kredi):</span>
-                  <span className="font-bold text-emerald-400">- ₺{TOTAL_GOVT_INCENTIVE.toLocaleString('tr-TR')}</span>
+                <div className="flex justify-between p-2 rounded-lg bg-emerald-950/40 border border-emerald-500/30">
+                  <span className="text-emerald-300">Devlet Hibe Desteği (Karşılıksız):</span>
+                  <span className="font-bold text-emerald-400">- ₺{GRANT_TL.toLocaleString('tr-TR')}</span>
                 </div>
-                <div className="flex justify-between p-2 rounded-lg bg-amber-900/20 border border-amber-500/30">
-                  <span className="font-bold">Cebinizden Çıkacak (Net):</span>
-                  <span className="font-black text-amber-400 text-sm">₺{netOutofPocket.toLocaleString('tr-TR')}</span>
+                <div className="flex justify-between p-2 rounded-lg bg-blue-950/40 border border-blue-500/30">
+                  <div>
+                    <span className="text-blue-300 block font-medium">Devlet Kredi Desteği (Geri Ödemeli):</span>
+                    <span className="text-[9px] text-blue-200/80">Müşterinin vade ile geri ödeyeceği uygun faizli kredi tutarı</span>
+                  </div>
+                  <span className="font-bold text-blue-400 self-center">₺{LOAN_TL.toLocaleString('tr-TR')}</span>
+                </div>
+                <div className="flex justify-between p-2 rounded-lg bg-slate-950 border border-slate-800">
+                  <span className="text-slate-300">Taşınma Yardımı:</span>
+                  <span className="font-bold text-teal-300">₺{MOVING_ASSISTANCE_TL.toLocaleString('tr-TR')}</span>
+                </div>
+                <div className="flex justify-between p-2 rounded-lg bg-amber-950/50 border border-amber-500/40">
+                  <div>
+                    <span className="font-bold text-amber-300 block">Tahmini Net Özkaynak / Ödenecek Tutar:</span>
+                    <span className="text-[9px] text-amber-200/80">Hibe düşüldükten sonra kalan net finansman ihtiyacı</span>
+                  </div>
+                  <span className="font-black text-amber-400 text-sm self-center">₺{netOutofPocket.toLocaleString('tr-TR')}</span>
                 </div>
               </div>
 

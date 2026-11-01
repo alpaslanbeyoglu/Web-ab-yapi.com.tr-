@@ -96,14 +96,14 @@ const FAQ_DATA: FAQItem[] = [
   {
     id: 'guvenlik-beton-standart',
     category: 'İnşaat Güvenliği & Konfor',
-    question: 'AB Yapı projelerinde kullanılan beton sınıfı ve deprem güvenliği standartları nelerdir?',
+    question: 'AB Yapı projelerinde kullanılan beton sınıfı ve deprem güvenliği standartları nasıl belirlenir?',
     answer:
-      'Projelerimizde güncel Türkiye Deprem Tehlike Haritası ve 2018 Türkiye Bina Deprem Yönetmeliği (TBDY) esas alınır. Eski binalarda kullanılan C14-C16 sınıfı kalitesiz betonların aksine; projelerimizde zemin etüt raporuna göre radye temel üzerine minimum C35, C40 veya C50 yüksek dayanımlı hazır beton ve nervürlü B420C çelik donatı kullanılmaktadır. Tüm dökümler bağımsız yapı denetim ve akredite laboratuvar numune kırma testleriyle belgelenir.',
-    badge: 'C40 / C50 Beton',
+      'Projelerimizde güncel Türkiye Deprem Tehlike Haritası ve 2018 Türkiye Bina Deprem Yönetmeliği (TBDY) esas alınır. Beton sınıfı ve yapısal elemanlar her bina projesinin özel statik hesaplarına, zemin etüt raporuna ve belediye onaylı projesine göre belirlenir. Projede C35 öngörülmüşse C35, C40 öngörülmüşse C40 yüksek dayanımlı hazır beton ve B420C nervürlü çelik donatı uygulanır. Tüm dökümler bağımsız yapı denetim ve akredite laboratuvar numune kırma testleriyle belgelenir.',
+    badge: 'Proje Statik Beton Sınıfı',
     highlightPoints: [
+      'Proje statik hesabına ve zemin etüdüne tam uyum.',
       'Radye jeneral temel ve sismik perde duvar tasarımı.',
       'Akredite laboratuvar onaylı 7 ve 28 günlük beton kırma testleri.',
-      'Sertifikalı nervürlü B420C çelik kullanımı.',
     ],
   },
   {
