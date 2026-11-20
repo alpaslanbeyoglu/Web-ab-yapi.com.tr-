@@ -187,7 +187,10 @@ export const Home: React.FC<HomeProps> = ({
       </section>
 
       {/* 2. COMPACT OFFICIAL STATS & BENEFITS BAR (4 Sleek Cards) */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8">
+      <section className="max-w-7xl mx-auto px-4 md:px-8" aria-labelledby="home-stats-heading">
+        <h2 id="home-stats-heading" className="sr-only">
+          {language === 'tr' ? 'Fatih Kentsel Dönüşüm Destekleri ve Güvence Özeti' : language === 'ar' ? 'ملخص دعم وضمانات التحول الحضري' : 'Fatih Urban Transformation Support and Assurance Summary'}
+        </h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
           
           <div className="bg-white rounded-xl p-3 md:p-4 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex items-center gap-2">
@@ -196,7 +199,7 @@ export const Home: React.FC<HomeProps> = ({
             </div>
             <div>
               <div className="text-sm md:text-md font-black text-slate-900 font-outfit">
-                ₺1.850.000
+                ₺1.875.000
               </div>
               <p className="text-[10px] font-semibold text-slate-500 leading-tight">
                 {t('stats.halfUs')}
@@ -224,7 +227,7 @@ export const Home: React.FC<HomeProps> = ({
             </div>
             <div>
               <div className="text-sm md:text-md font-black text-slate-900 font-outfit">
-                ₺7.000 / Ay
+                {language === 'tr' ? 'Resmi Destekler' : language === 'ar' ? 'الدعم الرسمي' : 'Official Support'}
               </div>
               <p className="text-[10px] font-semibold text-slate-500 leading-tight">
                 {t('stats.rentAssistance')}
@@ -249,6 +252,95 @@ export const Home: React.FC<HomeProps> = ({
         </div>
       </section>
 
+      {/* 3. SERVICES & TECHNICAL STANDARDS SUMMARY */}
+      <section className="max-w-7xl mx-auto px-4 md:px-8" aria-labelledby="home-standards-heading">
+        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-8 space-y-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-slate-100 pb-4">
+            <div className="space-y-1">
+              <span className="text-[11px] font-black uppercase tracking-wider text-teal-700">
+                {language === 'tr' ? 'Kurumsal Müteahhitlik & Mühendislik' : language === 'ar' ? 'المقاولات المؤسسية والهندسة' : 'Corporate Contracting & Engineering'}
+              </span>
+              <h2 id="home-standards-heading" className="text-xl md:text-2xl font-black text-slate-900 font-outfit">
+                {language === 'tr'
+                  ? 'Fatih Kentsel Dönüşüm Hizmetlerimiz ve Teknik Standartlarımız'
+                  : language === 'ar'
+                  ? 'خدمات التحول الحضري في الفاتح ومعاييرنا الفنية'
+                  : 'Fatih Urban Transformation Services & Technical Standards'}
+              </h2>
+            </div>
+            <button
+              onClick={() => setActiveTab('about')}
+              className="text-xs font-bold text-teal-700 hover:text-teal-800 inline-flex items-center gap-1 cursor-pointer shrink-0"
+            >
+              <span>{language === 'tr' ? 'Tüm Standartları İncele' : language === 'ar' ? 'عرض جميع المعايير' : 'View All Standards'}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <article className="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 space-y-2">
+              <div className="w-9 h-9 rounded-xl bg-teal-600/10 text-teal-700 flex items-center justify-center">
+                <FileText className="w-4 h-4" />
+              </div>
+              <h3 className="text-sm md:text-base font-extrabold text-slate-900 font-outfit">
+                {language === 'tr'
+                  ? '6306 Sayılı Kanun & Kat Karşılığı İnşaat'
+                  : language === 'ar'
+                  ? 'القانون رقم 6306 والبناء بنظام الشراكة'
+                  : 'Law No. 6306 & Land-Share Construction'}
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                {language === 'tr'
+                  ? 'Fatih genelinde %50+1 salt çoğunluk kararından riskli yapı tespitine kadar şeffaf kat paylaşım sözleşmeleriyle güvenli dönüşüm.'
+                  : language === 'ar'
+                  ? 'تحول آمن في الفاتح بعقود تقاسم واضحة بدءاً من قرار الأغلبية ٥٠٪+١ وحتى فحص المباني.'
+                  : 'Transparent land-share agreements across Fatih from 50%+1 majority decisions to licensed structural risk assessments.'}
+              </p>
+            </article>
+
+            <article className="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 space-y-2">
+              <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center">
+                <Award className="w-4 h-4" />
+              </div>
+              <h3 className="text-sm md:text-base font-extrabold text-slate-900 font-outfit">
+                {language === 'tr'
+                  ? 'Anahtar Teslim Müteahhitlik'
+                  : language === 'ar'
+                  ? 'مقاولات تسليم المفتاح'
+                  : 'Turnkey General Contracting'}
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                {language === 'tr'
+                  ? 'Ruhsat, yıkım, kaba ve ince inşaat ile iskan süreçlerini kapsayan, sözleşme takvimine sadık zamanında teslim garantisi.'
+                  : language === 'ar'
+                  ? 'إدارة كاملة للتراخيص والهدم والبناء حتى تسليم السكن في الموعد المحدد.'
+                  : 'End-to-end management covering permits, demolition, structural and finishing works with on-time delivery assurance.'}
+              </p>
+            </article>
+
+            <article className="bg-slate-50 rounded-2xl p-5 border border-slate-200/80 space-y-2">
+              <div className="w-9 h-9 rounded-xl bg-blue-600/10 text-blue-700 flex items-center justify-center">
+                <Layers className="w-4 h-4" />
+              </div>
+              <h3 className="text-sm md:text-base font-extrabold text-slate-900 font-outfit">
+                {language === 'tr'
+                  ? 'C30+ Beton, Radye Temel & 1. Sınıf Malzeme'
+                  : language === 'ar'
+                  ? 'خرسانة C30+ وأساس حصيري ومواد درجة أولى'
+                  : 'C30+ Concrete, Raft Foundation & 1st Class Material'}
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                {language === 'tr'
+                  ? 'Zemin etüdü ve statik projeye uygun minimum C30 ve üzeri beton sınıfı, radye jeneral temel ve 1. sınıf malzeme taahhüdü.'
+                  : language === 'ar'
+                  ? 'خرسانة C30 وما فوق حسب الدراسة الإنشائية، أساس حصيري مقاوم للزلازل، والتزام بمواد البناء من الدرجة الأولى.'
+                  : 'Project-specific C30 and higher concrete grades, raft foundation engineering under TBDY 2018, and 1st class certified materials.'}
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* 4. FAST URBAN TRANSFORMATION CALCULATOR */}
       <section className="max-w-7xl mx-auto px-4 md:px-8">
         <KentselDonusumCalculator
@@ -265,11 +357,11 @@ export const Home: React.FC<HomeProps> = ({
               <Bot className="w-4 h-4" />
               <span>{t('hero.btnAI')}</span>
             </div>
-            <h3 className="text-xl md:text-2xl font-black font-outfit">
+            <h2 className="text-xl md:text-2xl font-black font-outfit">
               {language === 'tr' ? 'Binanızın Kentsel Dönüşüm Şartlarını Öğrenin' : language === 'ar' ? 'تعرف على شروط التحول الحضري لمبناك' : 'Learn the Urban Transformation Conditions of Your Building'}
-            </h3>
+            </h2>
             <p className="text-xs md:text-sm text-slate-300">
-              {language === 'tr' ? '%50+1 çoğunluk kararı, hibe ve kredi şartları ile güncel kira yardımları hakkında anında bilgi alın.' : language === 'ar' ? 'احصل على معلومات فورية حول قرار الأغلبية ٥٠٪+١، وشروط المنح والقروض ومساعدات الإيجار الحالية.' : 'Get instant information about the 50%+1 majority decision, grant and loan conditions, and current rental assistance.'}
+              {language === 'tr' ? '%50+1 çoğunluk kararı, hibe ve kredi şartları ile resmi dönüşüm süreçleri hakkında anında bilgi alın.' : language === 'ar' ? 'احصل على معلومات فورية حول قرار الأغلبية ٥٠٪+١، وشروط المنح والقروض وإجراءات التحول الرسمية.' : 'Get instant information about the 50%+1 majority decision, grant and loan conditions, and official transformation procedures.'}
             </p>
           </div>
 

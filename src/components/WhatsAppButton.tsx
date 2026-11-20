@@ -40,7 +40,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ whatsappNumber }
                 AB
               </div>
               <div>
-                <h4 className="font-extrabold text-sm tracking-tight text-white drop-shadow-xs">AB Yapı WhatsApp Hattı</h4>
+                <p className="font-extrabold text-sm tracking-tight text-white drop-shadow-xs">AB Yapı WhatsApp Hattı</p>
                 <p className="text-[11px] text-emerald-100 flex items-center gap-1.5 font-medium">
                   <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
                   Çevrimiçi · Müşteri Danışmanı

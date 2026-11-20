@@ -278,9 +278,9 @@ export const AboutUs: React.FC<AboutProps> = ({ companyInfo, setActiveTab }) => 
               <div className="w-9 h-9 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
                 <Star className="w-5 h-5 fill-amber-500" />
               </div>
-              <h4 className="text-base md:text-lg font-extrabold text-slate-900 font-outfit">
+              <h3 className="text-base md:text-lg font-extrabold text-slate-900 font-outfit">
                 {activeTrans.qualityTitle}
-              </h4>
+              </h3>
             </div>
             <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
               {activeTrans.qualityText}
@@ -414,7 +414,7 @@ export const AboutUs: React.FC<AboutProps> = ({ companyInfo, setActiveTab }) => 
             <div className="w-12 h-12 mx-auto rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center border border-teal-500/20">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h4 className="font-extrabold text-lg">{activeTrans.standard1Title}</h4>
+            <h3 className="font-extrabold text-lg">{activeTrans.standard1Title}</h3>
             <p className="text-xs text-slate-300 leading-relaxed">
               {activeTrans.standard1Text}
             </p>
@@ -424,7 +424,7 @@ export const AboutUs: React.FC<AboutProps> = ({ companyInfo, setActiveTab }) => 
             <div className="w-12 h-12 mx-auto rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20">
               <Award className="w-6 h-6" />
             </div>
-            <h4 className="font-extrabold text-lg">{activeTrans.standard2Title}</h4>
+            <h3 className="font-extrabold text-lg">{activeTrans.standard2Title}</h3>
             <p className="text-xs text-slate-300 leading-relaxed">
               {activeTrans.standard2Text}
             </p>
@@ -434,7 +434,7 @@ export const AboutUs: React.FC<AboutProps> = ({ companyInfo, setActiveTab }) => 
             <div className="w-12 h-12 mx-auto rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20">
               <Users className="w-6 h-6" />
             </div>
-            <h4 className="font-extrabold text-lg">{activeTrans.standard3Title}</h4>
+            <h3 className="font-extrabold text-lg">{activeTrans.standard3Title}</h3>
             <p className="text-xs text-slate-300 leading-relaxed">
               {activeTrans.standard3Text}
             </p>

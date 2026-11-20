@@ -143,9 +143,9 @@ export const Contact: React.FC<ContactProps> = ({ companyInfo, onAddInquiry }) =
         {/* Contact Info Cards */}
         <div className="lg:col-span-5 space-y-6">
           <div className="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-slate-200 space-y-6">
-            <h3 className="font-extrabold text-slate-900 text-xl font-outfit border-b border-slate-100 pb-3">
+            <h2 className="font-extrabold text-slate-900 text-xl font-outfit border-b border-slate-100 pb-3">
               {activeTrans.infoTitle}
-            </h3>
+            </h2>
 
             <div className="space-y-4 text-xs md:text-sm">
               <div className="flex items-start gap-3">
@@ -236,9 +236,9 @@ export const Contact: React.FC<ContactProps> = ({ companyInfo, onAddInquiry }) =
         <div className="lg:col-span-7 space-y-6">
           <div className="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-slate-200 space-y-5">
             <div className="border-b border-slate-100 pb-3">
-              <h3 className="font-extrabold text-slate-900 text-xl font-outfit">
+              <h2 className="font-extrabold text-slate-900 text-xl font-outfit">
                 {activeTrans.formTitle}
-              </h3>
+              </h2>
               <p className="text-xs text-slate-500">
                 {activeTrans.formDesc}
               </p>
@@ -247,7 +247,7 @@ export const Contact: React.FC<ContactProps> = ({ companyInfo, onAddInquiry }) =
             {submitted ? (
               <div className="p-6 bg-emerald-50 rounded-2xl border border-emerald-200 text-center space-y-3">
                 <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-                <h4 className="font-extrabold text-emerald-900 text-lg">{activeTrans.successTitle}</h4>
+                <h3 className="font-extrabold text-emerald-900 text-lg">{activeTrans.successTitle}</h3>
                 <p className="text-xs text-emerald-800 max-w-md mx-auto">
                   {activeTrans.successDesc}
                 </p>

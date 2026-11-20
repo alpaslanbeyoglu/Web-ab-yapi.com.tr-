@@ -73,7 +73,7 @@ export const KentselDonusumGuide: React.FC<GuideProps> = ({
         </div>
         <div className="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
           <div className="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
-            <h4 className="font-bold text-slate-900">Ödeme Şartları</h4>
+            <h3 className="font-bold text-slate-900">Ödeme Şartları</h3>
             <ul className="list-disc list-inside space-y-1">
               <li>Faiz destekli geri ödeme planı.</li>
               <li>Düşük faiz oranlı finansman.</li>
@@ -81,7 +81,7 @@ export const KentselDonusumGuide: React.FC<GuideProps> = ({
             </ul>
           </div>
           <div className="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
-            <h4 className="font-bold text-slate-900">Vade ve Esneklik</h4>
+            <h3 className="font-bold text-slate-900">Vade ve Esneklik</h3>
             <ul className="list-disc list-inside space-y-1">
               <li>Maksimum 10 yıl vade seçeneği.</li>
               <li>İlk 12-24 ay ödemesiz dönem (opsiyonel).</li>

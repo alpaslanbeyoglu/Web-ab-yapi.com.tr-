@@ -37,7 +37,7 @@ import { AdminPage } from './pages/AdminPage';
 import { trackPageView, trackInquirySubmit } from './utils/analytics';
 
 const TAB_METADATA: Record<string, { path: string; title: string }> = {
-  home: { path: '/', title: 'AB Yapı | Güvene Yükselen Yapılar' },
+  home: { path: '/', title: 'AB Yapı - Fatih Kentsel Dönüşüm ve Güvenli Yapı Çözümleri' },
   guide: { path: '/kentsel-donusum-rehberi', title: 'AB Yapı | Kentsel Dönüşüm Rehberi & 6306 Kanun' },
   stats: { path: '/istatistikler', title: 'AB Yapı | İstanbul İnşaat & Dönüşüm İstatistikleri' },
   projects: { path: '/projelerimiz', title: 'AB Yapı | Projelerimiz' },

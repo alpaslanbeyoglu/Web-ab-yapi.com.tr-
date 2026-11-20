@@ -247,9 +247,9 @@ export const Statistics: React.FC<StatisticsProps> = ({ stats, setActiveTab }) =
       <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-8 space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
           <div>
-            <h3 className="font-extrabold text-slate-900 text-xl font-outfit">
+            <h2 className="font-extrabold text-slate-900 text-xl font-outfit">
               {activeTrans.targetTitle}
-            </h3>
+            </h2>
             <p className="text-xs text-slate-500">
               {activeTrans.targetDesc}
             </p>
@@ -278,7 +278,7 @@ export const Statistics: React.FC<StatisticsProps> = ({ stats, setActiveTab }) =
       <div className="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-slate-200 space-y-6">
         <div className="flex justify-between items-center">
           <div>
-            <h3 className="font-bold text-slate-900 text-lg">{activeTrans.ageTitle}</h3>
+            <h2 className="font-bold text-slate-900 text-lg">{activeTrans.ageTitle}</h2>
             <p className="text-xs text-slate-500">{activeTrans.ageDesc}</p>
           </div>
           <span className="text-xs font-bold bg-amber-100 text-amber-900 px-2.5 py-1 rounded-md">
@@ -346,9 +346,9 @@ export const Statistics: React.FC<StatisticsProps> = ({ stats, setActiveTab }) =
           <div>
             <div className="flex items-center gap-2">
               <Building className="w-5 h-5 text-teal-700" />
-              <h3 className="font-extrabold text-slate-900 text-xl font-outfit">
+              <h2 className="font-extrabold text-slate-900 text-xl font-outfit">
                 {activeTrans.tableTitle}
-              </h3>
+              </h2>
             </div>
             <p className="text-xs text-slate-500 mt-1">
               {activeTrans.tableDesc}

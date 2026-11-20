@@ -28,17 +28,17 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Hero / Header
     'hero.badge': 'Fatih Kentsel Dönüşüm & İnşaat',
-    'hero.title': "İstanbul'un Geleceğine Güvene Yükselen Sağlam Yapılar",
-    'hero.desc': '6306 sayılı kanun kapsamında Fatih bölgesinde depreme tam dayanıklı, modern mimarili ve zamanında teslim garantili yaşam alanları inşa ediyoruz.',
+    'hero.title': 'AB Yapı - Fatih Kentsel Dönüşüm ve Güvenli Yapı Çözümleri',
+    'hero.desc': '6306 sayılı kanun kapsamında Fatih bölgesinde kat karşılığı inşaat ve anahtar teslim müteahhitlik hizmetleriyle depreme dayanıklı, modern yaşam alanları inşa ediyoruz.',
     'hero.btnProjects': 'Projelerimiz',
     'hero.btnMap': 'İnteraktif Proje Haritası',
     'hero.btnAI': 'AI Dönüşüm Danışmanı',
 
     // Stats Bar
-    'stats.halfUs': 'Yarısı Bizden Hibe + Kredi',
+    'stats.halfUs': 'Yarısı Bizden Hibe + Kredi + Taşınma',
     'stats.totalProjects': 'Fatih\'te Tamamlanan Yapılarımız',
-    'stats.rentAssistance': 'Devlet Kira Yardımı Desteği',
-    'stats.safety': 'C40/50 Deprem Güvenliği',
+    'stats.rentAssistance': 'Bakanlık Güncel Uygulama Esasları',
+    'stats.safety': 'C30+ Beton & Radye Temel',
     'stats.safetyTitle': '%100 Güven',
 
     // Home / Projects section
@@ -82,17 +82,17 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Hero / Header
     'hero.badge': 'Fatih Urban Transformation & Construction',
-    'hero.title': 'Safe Structures Rising with Confidence for Istanbul’s Future',
-    'hero.desc': 'We construct fully earthquake-resistant, modern, and on-time guaranteed living spaces in the Fatih region under Law No. 6306.',
+    'hero.title': 'AB Yapı - Fatih Urban Transformation & Safe Building Solutions',
+    'hero.desc': 'Under Law No. 6306, we provide land-share construction and turnkey contracting in Fatih, building earthquake-resistant, modern living spaces.',
     'hero.btnProjects': 'Our Projects',
     'hero.btnMap': 'Interactive Project Map',
     'hero.btnAI': 'AI Transformation Advisor',
 
     // Stats Bar
-    'stats.halfUs': 'Half is from Us Grant + Credit',
+    'stats.halfUs': 'Half is from Us Grant + Credit + Moving',
     'stats.totalProjects': 'Completed in Fatih',
-    'stats.rentAssistance': 'Government Rent Support',
-    'stats.safety': 'C40/50 Earthquake Safety',
+    'stats.rentAssistance': 'Official Ministry Guidelines',
+    'stats.safety': 'C30+ Concrete & Raft Foundation',
     'stats.safetyTitle': '100% Secure',
 
     // Home / Projects section
@@ -136,17 +136,17 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Hero / Header
     'hero.badge': 'الفاتح للتحول الحضري والبناء',
-    'hero.title': 'مبانٍ متينة ترتفع بثقة لمستقبل إسطنبول',
-    'hero.desc': 'نحن نبني مساحات معيشية مقاومة للزلازل بالكامل، حديثة ومضمونة التسليم في الوقت المحدد في منطقة الفاتح بموجب القانون رقم 6306.',
+    'hero.title': 'AB Yapı - التحول الحضري في الفاتح وحلول البناء الآمنة',
+    'hero.desc': 'بموجب القانون رقم 6306، نقدم خدمات البناء بنظام الشراكة والمقاولات تسليم المفتاح في الفاتح لتشييد مساكن حديثة ومقاومة للزلازل.',
     'hero.btnProjects': 'مشاريعنا',
     'hero.btnMap': 'خريطة تفاعلية للمشاريع',
     'hero.btnAI': 'مستشار التحول بالذكاء الاصطناعي',
 
     // Stats Bar
-    'stats.halfUs': 'منحة حكومية ونصف التكلفة قرض',
+    'stats.halfUs': 'منحة حكومية وقرض ودعم انتقال',
     'stats.totalProjects': 'منجزة في الفاتح',
-    'stats.rentAssistance': 'دعم الإيجار الحكومي',
-    'stats.safety': 'أمان الزلازل C40/50',
+    'stats.rentAssistance': 'وفق لوائح الوزارة الرسمية',
+    'stats.safety': 'خرسانة C30+ وأساس حصيري',
     'stats.safetyTitle': 'آمن ١٠٠٪',
 
     // Home / Projects section

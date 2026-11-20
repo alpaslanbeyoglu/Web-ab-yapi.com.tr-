@@ -171,9 +171,9 @@ Tarayıcı ayarlarınızdan çerez tercihlerinizi dilediğiniz zaman değiştire
 
             {/* Navigation Links */}
             <div className="lg:col-span-2 space-y-3">
-              <h4 className="font-bold text-white text-sm uppercase tracking-wider border-b border-slate-800 pb-2">
+              <h3 className="font-bold text-white text-sm uppercase tracking-wider border-b border-slate-800 pb-2">
                 {activeTrans.titleQuick}
-              </h4>
+              </h3>
               <ul className="space-y-2 text-xs font-semibold text-slate-400">
                 <li>
                   <button
@@ -220,9 +220,9 @@ Tarayıcı ayarlarınızdan çerez tercihlerinizi dilediğiniz zaman değiştire
 
             {/* Legal & Guide Links */}
             <div className="lg:col-span-3 space-y-3">
-              <h4 className="font-bold text-white text-sm uppercase tracking-wider border-b border-slate-800 pb-2">
+              <h3 className="font-bold text-white text-sm uppercase tracking-wider border-b border-slate-800 pb-2">
                 {activeTrans.titleService}
-              </h4>
+              </h3>
               <ul className="space-y-2 text-xs font-semibold text-slate-400">
                 <li>
                   <button
@@ -261,9 +261,9 @@ Tarayıcı ayarlarınızdan çerez tercihlerinizi dilediğiniz zaman değiştire
 
             {/* Contact Info Column */}
             <div className="lg:col-span-3 space-y-3">
-              <h4 className="font-bold text-white text-sm uppercase tracking-wider border-b border-slate-800 pb-2">
+              <h3 className="font-bold text-white text-sm uppercase tracking-wider border-b border-slate-800 pb-2">
                 {activeTrans.titleContact}
-              </h4>
+              </h3>
               <div className="space-y-2.5 text-xs text-slate-400">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
